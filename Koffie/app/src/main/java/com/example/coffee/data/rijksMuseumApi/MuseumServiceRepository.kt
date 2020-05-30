@@ -1,6 +1,4 @@
-package com.example.koffie.data.rijksMuseumApi
-
-import retrofit2.Retrofit
+package com.example.coffee.data.rijksMuseumApi
 
 class MuseumServiceRepository() {
     private val museumApi: MuseumApiService = MuseumApi().createApi()

@@ -1,4 +1,4 @@
-package com.example.koffie.ui.rijksMuseum
+package com.example.coffee.ui.rijksMuseum
 
 import android.content.Context
 import android.util.Log
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.koffie.R
-import com.example.koffie.model.MuseumObject
+import com.example.coffee.R
+import com.example.coffee.model.MuseumObject
 import kotlinx.android.synthetic.main.model_museum_object.view.*
 
 class MuseumAdapter(private val artifacts: List<MuseumObject>) :

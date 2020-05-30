@@ -1,4 +1,4 @@
-package com.example.koffie.model
+package com.example.coffee.model
 
 import com.google.gson.annotations.SerializedName
 

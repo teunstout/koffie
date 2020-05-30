@@ -1,4 +1,4 @@
-package com.example.koffie.ui.rijksMuseum
+package com.example.coffee.ui.rijksMuseum
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.koffie.R
-import com.example.koffie.model.MuseumObject
+import com.example.coffee.R
+import com.example.coffee.model.MuseumObject
 import kotlinx.android.synthetic.main.fragment_museum.*
 
 class Museum : Fragment() {

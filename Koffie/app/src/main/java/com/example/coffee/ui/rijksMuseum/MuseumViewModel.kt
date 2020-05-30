@@ -1,12 +1,11 @@
-package com.example.koffie.ui.rijksMuseum
+package com.example.coffee.ui.rijksMuseum
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.koffie.data.rijksMuseumApi.MuseumServiceRepository
-import com.example.koffie.model.MuseumObject
-import com.example.koffie.model.MuseumWebObject
+import com.example.coffee.data.rijksMuseumApi.MuseumServiceRepository
+import com.example.coffee.model.MuseumObject
+import com.example.coffee.model.MuseumWebObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

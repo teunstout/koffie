@@ -1,13 +1,16 @@
 <resources>
     <!--  Title activity's and fragments  -->
     <string name="app_name">Coffee</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <!--  Navigation names  -->
+    <string name="nav_home">Home</string>
+    <string name="nav_statistics">Statistics</string>
+    <string name="nav_museum">Museum</string>
 
     <!--  Fragment Museum  -->
     <string name="fragment_museum_title">Coffee Museum</string>
     <string name="fragment_museum_img_desc">Image of the object</string>
+
 
 
 </resources>

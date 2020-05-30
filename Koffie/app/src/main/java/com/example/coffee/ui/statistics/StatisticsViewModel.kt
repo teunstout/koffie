@@ -1,13 +1,13 @@
-package com.example.koffie.ui.coffeeScreen
+package com.example.coffee.ui.statistics
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CoffeeViewModel : ViewModel() {
+class StatisticsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is notifications Fragment"
     }
     val text: LiveData<String> = _text
 }

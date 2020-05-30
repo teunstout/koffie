@@ -1,4 +1,4 @@
-package com.example.koffie
+package com.example.coffee
 
 import org.junit.Test
 

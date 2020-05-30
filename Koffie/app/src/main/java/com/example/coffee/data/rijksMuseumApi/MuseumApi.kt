@@ -1,4 +1,4 @@
-package com.example.koffie.data.rijksMuseumApi
+package com.example.coffee.data.rijksMuseumApi
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
