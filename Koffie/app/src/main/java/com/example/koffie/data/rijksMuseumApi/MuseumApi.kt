@@ -8,6 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MuseumApi() {
     private val baseUrl = "https://www.rijksmuseum.nl/"
 
+    // TODO misschien in een companion object zetten.
+
     fun createApi(): MuseumApiService {
         // Log de body van het request
         val okHttpClient = OkHttpClient.Builder()
