@@ -1,6 +1,7 @@
 package com.example.koffie.ui.rijksMuseum
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +19,9 @@ class MuseumAdapter(private val artifacts: List<MuseumObject>) :
         fun bind(artifact: MuseumObject) {
             itemView.tvTitle.text = artifact.title
             itemView.tvCreator.text = artifact.creator
-            itemView.tvDescription.text = artifact.creator
-            Glide.with(context).load(artifact.pictureUrl).into(itemView.imgObject)
+            itemView.tvDescription.text = artifact.description
+            Log.i("URL", artifact.pictureUrl.url)
+            Glide.with(context).load(artifact.pictureUrl.url).into(itemView.imgObject)
         }
     }
 

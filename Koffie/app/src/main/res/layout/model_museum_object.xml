@@ -13,23 +13,23 @@
         android:id="@+id/imgObject"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/fragment_museum_img_desc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="@string/fragment_museum_img_desc" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="14sp"
+        android:textAlignment="center"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgObject" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvCreator"
@@ -38,7 +38,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/imgObject" />
 
     <TextView
         android:id="@+id/tvDescription"
