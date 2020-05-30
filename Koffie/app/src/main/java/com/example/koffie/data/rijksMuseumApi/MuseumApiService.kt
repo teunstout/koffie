@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MuseumApiService {
-    @GET("api/nl/")
+    @GET("api/nl/collection")
     fun museumObjects(
         @Query("key") apiKey: String, // The Api key of your account
         @Query("format") format: String, // Json format back
