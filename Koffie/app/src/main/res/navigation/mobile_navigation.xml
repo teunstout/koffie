@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/museum">
+    <fragment
+        android:id="@+id/koffie"
+        android:name="com.example.koffie.ui.coffeeScreen.Coffee"
+        android:label="fragment_koffie"
+        tools:layout="@layout/fragment_coffee" />
+    <fragment
+        android:id="@+id/museum"
+        android:name="com.example.koffie.ui.rijksMuseum.Museum"
+        android:label="fragment_museum"
+        tools:layout="@layout/fragment_museum" />
+    <fragment
+        android:id="@+id/statistics"
+        android:name="com.example.koffie.ui.statistics.Statistics"
+        android:label="fragment_statistics"
+        tools:layout="@layout/fragment_statistics" />
+</navigation>
