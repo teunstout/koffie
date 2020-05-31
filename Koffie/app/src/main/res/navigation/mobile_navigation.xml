@@ -7,16 +7,16 @@
     <fragment
         android:id="@+id/coffee"
         android:name="com.example.coffee.ui.coffeeScreen.Coffee"
-        android:label="fragment_koffie"
+        android:label="Coffee"
         tools:layout="@layout/fragment_coffee" />
     <fragment
         android:id="@+id/museum"
         android:name="com.example.coffee.ui.rijksMuseum.Museum"
-        android:label="fragment_museum"
+        android:label="Museum"
         tools:layout="@layout/fragment_museum" />
     <fragment
         android:id="@+id/statistics"
         android:name="com.example.coffee.ui.statistics.Statistics"
-        android:label="fragment_statistics"
+        android:label="Statistics"
         tools:layout="@layout/fragment_statistics" />
 </navigation>
