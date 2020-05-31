@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,7 +15,7 @@ import com.example.coffee.R
 import com.example.coffee.model.MuseumObject
 import kotlinx.android.synthetic.main.fragment_museum.*
 
-class Museum : Fragment() {
+class MuseumFragment : Fragment() {
 
     private lateinit var dashboardViewModel: MuseumViewModel // ViewModel
     private var artifacts = ArrayList<MuseumObject>()  // Array of MuseumObjects
@@ -37,6 +38,7 @@ class Museum : Fragment() {
     private fun listenLiveData() {
         dashboardViewModel.artifacts.observe(viewLifecycleOwner, Observer {
             artifacts.addAll(it) // Add all data
+            view?.findViewById<RelativeLayout>(R.id.loadingPanel)?.visibility = View.GONE
             museumAdapter.notifyDataSetChanged() // Notify adapter of change
         })
     }
@@ -48,12 +50,7 @@ class Museum : Fragment() {
         // Recyclerview with vertical layout
         rvArtifacts.layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL , false)
         rvArtifacts.adapter = museumAdapter // Set adapter of recyclerview
-
-        // Click listener of button
-        button.setOnClickListener {
-            dashboardViewModel.getMuseumObjects(1)
-            Toast.makeText(this.context, "gelukt", Toast.LENGTH_SHORT).show()
-        }
+        dashboardViewModel.getMuseumObjects(1)
     }
 }
 

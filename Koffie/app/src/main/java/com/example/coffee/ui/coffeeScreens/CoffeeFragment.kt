@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.coffee.R
 
-class Coffee : Fragment() {
+class CoffeeFragment : Fragment() {
 
     private lateinit var coffeeViewModel: CoffeeViewModel
 

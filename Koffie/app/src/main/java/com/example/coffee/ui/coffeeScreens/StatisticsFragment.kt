@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.coffee.R
 
-class Statistics : Fragment() {
+class StatisticsFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
