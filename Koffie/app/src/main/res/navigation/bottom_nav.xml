@@ -2,21 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
+    android:id="@+id/bottom_nav"
     app:startDestination="@id/coffee">
     <fragment
         android:id="@+id/coffee"
-        android:name="com.example.coffee.ui.coffeeScreen.Coffee"
-        android:label="Coffee"
+        android:name="com.example.coffee.ui.coffeeScreens.Coffee"
+        android:label="fragment_coffee"
         tools:layout="@layout/fragment_coffee" />
     <fragment
         android:id="@+id/museum"
         android:name="com.example.coffee.ui.rijksMuseum.Museum"
-        android:label="Museum"
+        android:label="fragment_museum"
         tools:layout="@layout/fragment_museum" />
     <fragment
         android:id="@+id/statistics"
-        android:name="com.example.coffee.ui.statistics.Statistics"
-        android:label="Statistics"
+        android:name="com.example.coffee.ui.coffeeScreens.Statistics"
+        android:label="fragment_statistics"
         tools:layout="@layout/fragment_statistics" />
 </navigation>

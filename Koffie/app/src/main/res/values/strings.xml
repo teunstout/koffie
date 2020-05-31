@@ -11,6 +11,15 @@
     <string name="fragment_museum_title">Coffee Museum</string>
     <string name="fragment_museum_img_desc">Image of the object</string>
 
+    <!-- Smiley text -->
+    <string name="smiley_disappointment">Wow! no coffee yet?</string>
+    <string name="smiley_thinking">Guess you should drink another one!</string>
+    <string name="smiley_smile">The right amount of caffeine</string>
+    <string name="smiley_nervous">Do not go overboard now</string>
+    <string name="smiley_shocked">Are you going to pull a all nighter?</string>
+    <string name="title_activity_coffee">CoffeeActivity</string>
+
+    <!-- Strings used for fragments for navigation -->
 
 
 </resources>
