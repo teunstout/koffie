@@ -53,6 +53,7 @@ class AddCoffeeActivity : AppCompatActivity() {
             coffeeChoiceList[viewPagerCoffee.currentItem],
             itAmount.text.toString()
         )
+        finish()
     }
 
 

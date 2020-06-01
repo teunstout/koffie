@@ -19,22 +19,31 @@ class AddCoffeeViewModel(application: Application) : AndroidViewModel(applicatio
     var choices = coffeeRepository.getCoffeeChoices()
 
     fun saveCoffee(coffeeChoice: CoffeeChoice, amount: String) {
-        val coffeeToSave = Coffee(coffeeChoice.coffeeName, LocalDate.now().format(format), amount.toInt()) // Coffee object that needs to be added
-        val allTodayCoffee: List<Coffee>? = coffeeRepository.getTodayCoffee(LocalDate.now().format(format)) // All coffee that is in the database from today
-            .filter{ it.type == coffeeToSave.type} // Filter to look if there is a coffee
+        // Coffee object that needs to be added
+        val coffeeToSave = Coffee(
+            coffeeChoice.coffeeName,
+            LocalDate.now().format(format),
+            amount.toInt()
+        )
 
-        if (allTodayCoffee.isNullOrEmpty()) {
-            Log.i("SaveCoffee", amount)
-            CoroutineScope(Dispatchers.IO).launch {
-                coffeeRepository.saveCoffee(coffeeToSave)
+        CoroutineScope(Dispatchers.Default).launch {
+            val allTodayCoffee = withContext(Dispatchers.IO) {
+                coffeeRepository.getTodayCoffee(LocalDate.now().format(format)) // All coffee that is in the database from today
+                    .filter { it.type == coffeeToSave.type } // Filter to look if there is a coffee
             }
-        } else {
-            allTodayCoffee[allTodayCoffee.size].amount += amount.toInt()
-            Log.i("UpdateCoffee", allTodayCoffee[allTodayCoffee.size].amount.toString())
-            CoroutineScope(Dispatchers.IO).launch {
-                coffeeRepository.updateCoffee(allTodayCoffee[allTodayCoffee.size])
+
+            if (allTodayCoffee.isNullOrEmpty()) {
+                Log.i("SaveCoffee", amount)
+                CoroutineScope(Dispatchers.IO).launch {
+                    coffeeRepository.saveCoffee(coffeeToSave)
+                }
+            } else {
+                allTodayCoffee[0].amount += amount.toInt()
+                Log.i("UpdateCoffee", allTodayCoffee[0].amount.toString())
+                CoroutineScope(Dispatchers.IO).launch {
+                    coffeeRepository.updateCoffee(allTodayCoffee[0])
+                }
             }
         }
     }
-
 }
