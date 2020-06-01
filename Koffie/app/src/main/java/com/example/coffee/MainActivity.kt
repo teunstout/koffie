@@ -14,7 +14,9 @@ import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
     private val coffeeViewModel: CoffeeViewModel by viewModels()
-    private val allCoffee = arrayListOf<CoffeeChoice>(
+
+    // Todo use firebase to check the images with the database and update
+    private val allCoffee = arrayListOf(
         CoffeeChoice(R.drawable.coffee, "COFFEE"),
         CoffeeChoice(R.drawable.cappuccino, "CAPPUCCINO"),
         CoffeeChoice(R.drawable.espresso, "ESPRESSO")

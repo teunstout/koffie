@@ -11,6 +11,9 @@ import kotlinx.android.synthetic.main.activity_coffee.*
 
 
 class CoffeeActivity : AppCompatActivity() {
+    companion object{
+        const val DATE_STRING = "dd-MM-yyyy"
+    }
     private val coffeeViewModel: CoffeeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {

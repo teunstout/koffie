@@ -7,6 +7,6 @@ import java.util.*
 @Entity(primaryKeys = ["type", "date"])
 data class Coffee(
     val type: String,
-    val amount: Int,
-    val date: Date
+    val date: String,
+    var amount: Int
 )

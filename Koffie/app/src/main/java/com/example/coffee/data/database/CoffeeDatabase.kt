@@ -6,29 +6,28 @@ import com.example.coffee.model.databaseObjects.Coffee
 import com.example.coffee.model.databaseObjects.CoffeeChoice
 
 @Database(entities = [Coffee::class, CoffeeChoice::class], version = 1, exportSchema = false)
-@TypeConverters(DateTypeConverter::class)
-abstract class MuseumRoomDatabase : RoomDatabase() {
-    abstract fun museumRoomDao(): MuseumRoomDao
+abstract class CoffeeDatabase : RoomDatabase() {
+    abstract fun coffeeDao(): CoffeeDao
 
     companion object {
         private const val NAME_DATABASE = "Coffee"
 
         @Volatile // Changes direct visible to other threats
-        private var INSTANCE: MuseumRoomDatabase? = null
+        private var INSTANCE: CoffeeDatabase? = null
 
-        fun getInstance(context: Context): MuseumRoomDatabase {
+        fun getInstance(context: Context): CoffeeDatabase {
             if (INSTANCE == null) { // Look if there is a instance
-                synchronized(MuseumRoomDatabase::class.java) { // Create instance of database
+                synchronized(CoffeeDatabase::class.java) { // Create instance of database
                     INSTANCE = Room.databaseBuilder(
                         context,
-                        MuseumRoomDatabase::class.java,
+                        CoffeeDatabase::class.java,
                         NAME_DATABASE
                     )
                         .build()
                 }
             }
 
-            return INSTANCE as MuseumRoomDatabase
+            return INSTANCE as CoffeeDatabase
         }
     }
 }
