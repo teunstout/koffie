@@ -1,14 +1,13 @@
 package com.example.coffee.ui.rijksMuseum
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.coffee.R
-import com.example.coffee.model.MuseumObject
+import com.example.coffee.model.rijksMuseumObjects.MuseumObject
 import kotlinx.android.synthetic.main.model_museum_object.view.*
 
 class MuseumAdapter(private val artifacts: List<MuseumObject>) :
@@ -20,7 +19,6 @@ class MuseumAdapter(private val artifacts: List<MuseumObject>) :
             itemView.tvTitle.text = artifact.title
             itemView.tvCreator.text = artifact.creator
             itemView.tvDescription.text = artifact.description
-            Log.i("URL", artifact.pictureUrl.url)
             Glide.with(context).load(artifact.pictureUrl.url).into(itemView.imgObject)
         }
     }

@@ -1,7 +1,12 @@
 <resources>
     <!--  Title activity's and fragments  -->
     <string name="app_name">Coffee</string>
-    <string name="title_activity_coffee">CoffeeActivity</string>
+    <string name="title_activity_coffee">Daily coffee</string>
+    <string name="title_activity_add_coffee">Add coffee</string>
+
+    <!-- Strings menu -->
+    <string name="main_title_text">coffee Today</string>
+    <string name="menu_add_coffee">Add Coffee</string>
 
     <!--  Navigation names  -->
     <string name="nav_home">Home</string>
@@ -19,7 +24,9 @@
     <string name="smiley_nervous">Do not go overboard now</string>
     <string name="smiley_shocked">Are you going to pull a all nighter?</string>
 
-    <!-- Strings used for fragments for navigation -->
-    <string name="main_title_text">coffee Today</string>
+    <!-- Add coffee activity -->
+    <string name="add_coffee_title">Which cup of coffee will it be?</string>
+    <string name="add_coffee_how_much">How many cups?</string>
+    <string name="add_coffee_button_text">Confirm cup of coffee</string>
 
 </resources>

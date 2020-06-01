@@ -2,9 +2,10 @@ package com.example.coffee.data.database
 
 import android.content.Context
 import androidx.room.*
-import com.example.coffee.model.CoffeeEntity
+import com.example.coffee.model.databaseObjects.Coffee
+import com.example.coffee.model.databaseObjects.CoffeeChoice
 
-@Database(entities = [CoffeeEntity::class], version = 1, exportSchema = false)
+@Database(entities = [Coffee::class, CoffeeChoice::class], version = 1, exportSchema = false)
 @TypeConverters(DateTypeConverter::class)
 abstract class MuseumRoomDatabase : RoomDatabase() {
     abstract fun museumRoomDao(): MuseumRoomDao

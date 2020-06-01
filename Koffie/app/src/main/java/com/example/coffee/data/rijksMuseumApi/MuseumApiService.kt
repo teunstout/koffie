@@ -1,6 +1,6 @@
 package com.example.coffee.data.rijksMuseumApi
 
-import com.example.coffee.model.MuseumWebObject
+import com.example.coffee.model.rijksMuseumObjects.MuseumWebObject
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

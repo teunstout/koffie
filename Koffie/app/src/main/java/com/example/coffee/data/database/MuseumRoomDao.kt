@@ -1,34 +1,16 @@
 package com.example.coffee.data.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.coffee.model.CoffeeEntity
+import com.example.coffee.model.databaseObjects.CoffeeChoice
 
 @Dao // Data access object
 interface MuseumRoomDao {
-
-    @Query("SELECT * FROM coffeeEntity WHERE date > :date")
-    fun getCoffeeAfterDate(date: Long): LiveData<List<CoffeeEntity>>
-    @Query("SELECT * FROM coffeeEntity")
-    fun getCoffeeAfterDate(): LiveData<List<CoffeeEntity>>
-
+    // CoffeeChoice table
     @Insert
-    fun insertCoffee(coffee: CoffeeEntity)
+    suspend fun insertCoffeeChoice(coffeeChoice: CoffeeChoice)
 
-    @Update
-    fun updateCoffee(coffee: CoffeeEntity)
+    @Query("SELECT * FROM CoffeeChoice")
+    suspend fun getAllCoffeeChoices(): List<CoffeeChoice>
 
-    @Delete
-    fun deleteCoffee(coffee: CoffeeEntity)
-
-    @Query("DELETE FROM CoffeeEntity WHERE date = :today")
-    fun deleteCoffeeByDate(today: Long)
-
-    @Query("SELECT * FROM coffeeEntity WHERE date = :today")
-    fun getSpecificDayCoffee(today: Long): List<CoffeeEntity>
-
-//
-//
-//    @Query("SELECT type, SUM(amount) FROM coffeeEntity GROUP BY type")
-//    fun getTotalCoffee(): List<CoffeeEntity>
+    // Coffee table
 }

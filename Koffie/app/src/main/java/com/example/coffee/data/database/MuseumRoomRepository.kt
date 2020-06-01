@@ -2,14 +2,15 @@ package com.example.coffee.data.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.example.coffee.model.CoffeeEntity
+import com.example.coffee.model.databaseObjects.Coffee
+import com.example.coffee.model.databaseObjects.CoffeeChoice
 
 
 class MuseumRoomRepository(context: Context) {
     private var museumRoomDatabase: MuseumRoomDatabase = MuseumRoomDatabase.getInstance(context)
     private var museumRoomDao: MuseumRoomDao = museumRoomDatabase.museumRoomDao()
 
-    fun getCoffeeAfterDate(): LiveData<List<CoffeeEntity>> = museumRoomDao.getCoffeeAfterDate()
+    suspend fun insertCoffeeChoice(coffeeChoice: CoffeeChoice) = museumRoomDao.insertCoffeeChoice(coffeeChoice)
 
-//    fun getTotalCoffee() = museumRoomDao.getTotalCoffee()
+    suspend fun getCoffeeChoices(): List<CoffeeChoice> = museumRoomDao.getAllCoffeeChoices()
 }

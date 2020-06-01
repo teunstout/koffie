@@ -4,8 +4,10 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.coffee.data.rijksMuseumApi.MuseumServiceRepository
-import com.example.coffee.model.MuseumObject
-import com.example.coffee.model.MuseumWebObject
+import com.example.coffee.model.rijksMuseumObjects.MuseumObject
+import com.example.coffee.model.rijksMuseumObjects.MuseumWebObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
