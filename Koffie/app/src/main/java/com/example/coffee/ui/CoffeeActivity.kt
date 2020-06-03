@@ -6,11 +6,22 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.coffee.R
 import kotlinx.android.synthetic.main.activity_coffee.*
+import java.time.LocalDate
+import java.time.Year
+import java.time.format.DateTimeFormatter
 
 
 class CoffeeActivity : AppCompatActivity() {
-    companion object{
+    companion object {
         const val DATE_STRING = "dd-MM-yyyy"
+        fun today(): String {
+            val format = DateTimeFormatter.ofPattern(CoffeeActivity.DATE_STRING)
+            return LocalDate.now().format(format)
+        }
+        fun yesterday(): String {
+            val format = DateTimeFormatter.ofPattern(CoffeeActivity.DATE_STRING)
+            return LocalDate.now().minusDays(1).format(format)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

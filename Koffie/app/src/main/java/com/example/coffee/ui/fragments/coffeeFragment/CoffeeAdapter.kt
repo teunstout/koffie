@@ -11,7 +11,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coffee.R
 import com.example.coffee.model.databaseObjects.Coffee
-import java.util.zip.Inflater
+import com.example.coffee.ui.CoffeeActivity
+import kotlinx.android.synthetic.main.model_coffee_card.view.*
+
 
 class CoffeeAdapter(private val coffeeList: ArrayList<ArrayList<Coffee>>) :
     RecyclerView.Adapter<CoffeeAdapter.ViewHolder>() {
@@ -20,13 +22,21 @@ class CoffeeAdapter(private val coffeeList: ArrayList<ArrayList<Coffee>>) :
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val rootLayout: LinearLayout = view.findViewById(R.id.linearLayoutTable)
 
+
         fun bind(coffeeByDay: ArrayList<Coffee>) {
-            Log.i("WEAREIN", coffeeByDay.toString())
+            Log.i("COFFEELIST", coffeeList.toString())
+            when (coffeeByDay[0].date) {
+                CoffeeActivity.today() -> itemView.tvDay.text = "Today"
+                CoffeeActivity.yesterday() -> itemView.tvDay.text = "Yesterday"
+                else -> itemView.tvDay.text = coffeeByDay[0].date
+            }
+
             coffeeByDay.forEach {
-                val coffeeRow = LayoutInflater.from(context).inflate(R.layout.model_coffee_row, rootLayout)
+                val coffeeRow = LayoutInflater.from(context).inflate(R.layout.model_coffee_row, rootLayout, false)
                 coffeeRow.findViewById<ImageView>(R.id.imgCoffee).setImageResource(it.imgId)
                 coffeeRow.findViewById<TextView>(R.id.tvTypeCoffee).text = it.type
                 coffeeRow.findViewById<TextView>(R.id.tvAmountCoffee).text = it.amount.toString()
+                rootLayout.addView(coffeeRow)
             }
         }
     }

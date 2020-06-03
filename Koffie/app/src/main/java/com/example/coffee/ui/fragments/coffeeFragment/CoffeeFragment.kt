@@ -13,6 +13,9 @@ import com.example.coffee.model.databaseObjects.Coffee
 import com.example.coffee.ui.CoffeeViewModel
 import com.example.coffee.ui.fragments.coffeeFragment.addCoffeeActivity.AddCoffeeActivity
 import kotlinx.android.synthetic.main.fragment_coffee.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class CoffeeFragment : Fragment() {
     private val coffeeViewModel: CoffeeViewModel by activityViewModels()
@@ -42,33 +45,33 @@ class CoffeeFragment : Fragment() {
     private fun initView() {
         rvCoffee.adapter = coffeeAdapter
         rvCoffee.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+
         coffeeViewModel.coffee.observe(viewLifecycleOwner, Observer {
             addCoffeeSortedToList(it as ArrayList<Coffee>)
-            Log.i("HELLO WORLD", it.toString())
-            Log.i("LIST", coffeeList.toString())
-            coffeeAdapter.notifyDataSetChanged()
         })
     }
 
     private fun addCoffeeSortedToList(allCoffee: ArrayList<Coffee>) {
-        Log.i("LIST", coffeeList.toString())
-        coffeeList.clear()
-        Log.i("LIST", coffeeList.toString())
         if (allCoffee.isNullOrEmpty() || allCoffee.size == 0) return // check if list is empty and return if so
-        var coffeeListDateDay = "" // Date of last inserted coffee
-        var coffeeListIndex = -1
 
+        coffeeList.clear()
 
-        allCoffee.forEach{
-            if (coffeeListDateDay == it.date){
-                coffeeList[coffeeListIndex].add(it)
-            } else {
-                coffeeListDateDay = it.date
-                coffeeList.add(ArrayList<Coffee>())
-                coffeeList[++coffeeListIndex].add(it)
+        CoroutineScope(Dispatchers.Main).launch {
+            var coffeeListDateDay = "" // Date of last inserted coffee
+            var coffeeListIndex = -1
+
+            allCoffee.forEach {
+                if (coffeeListDateDay == it.date) {
+                    coffeeList[coffeeListIndex].add(it)
+                } else {
+                    coffeeListDateDay = it.date
+                    coffeeList.add(ArrayList<Coffee>())
+                    coffeeList[++coffeeListIndex].add(it)
+                }
             }
         }
-        Log.i("LIST", coffeeList.toString())
+
+        coffeeAdapter.notifyDataSetChanged()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

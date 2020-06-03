@@ -17,6 +17,11 @@
     <string name="fragment_museum_title">Coffee Museum</string>
     <string name="fragment_museum_img_desc">Image of the object</string>
 
+    <!--  Fragment Coffee  -->
+    <string name="fragment_coffee_today">Today</string>
+    <string name="fragment_coffee_yesterday">Yesterday</string>
+
+
     <!-- Smiley text -->
     <string name="smiley_disappointment">Wow! no coffee yet?</string>
     <string name="smiley_thinking">Guess you should drink another one!</string>
@@ -28,5 +33,8 @@
     <string name="add_coffee_title">Which cup of coffee will it be?</string>
     <string name="add_coffee_how_much">How many cups?</string>
     <string name="add_coffee_button_text">Confirm cup of coffee</string>
+
+    <!--  Model coffee row  -->
+    <string name="model_coffee_image">Coffee image</string>
 
 </resources>

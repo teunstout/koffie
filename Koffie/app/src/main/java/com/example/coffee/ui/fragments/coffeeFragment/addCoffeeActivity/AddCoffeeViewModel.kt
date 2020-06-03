@@ -18,7 +18,7 @@ class AddCoffeeViewModel(application: Application) : AndroidViewModel(applicatio
     var choices = coffeeRepository.getCoffeeChoices()
 
     fun saveCoffee(coffeeChoice: CoffeeChoice, amount: String) {
-        val todayDate = LocalDate.now().format(format)
+        val todayDate = "29-05-2020"// LocalDate.now().format(format)
         // Coffee object that needs to be added
         val coffeeToSave = Coffee(
             coffeeChoice.coffeeName,
