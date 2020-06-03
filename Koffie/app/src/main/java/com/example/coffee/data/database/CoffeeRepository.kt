@@ -19,4 +19,6 @@ class CoffeeRepository(context: Context) {
     suspend fun updateCoffee(coffee: Coffee) = coffeeDao.updateCoffee(coffee)
 
     fun getTodayCoffee(dateString: String): List<Coffee> = coffeeDao.getTodayCoffee(dateString)
+
+    fun getAllCoffee(): LiveData<List<Coffee>> = coffeeDao.getAllCoffee()
 }

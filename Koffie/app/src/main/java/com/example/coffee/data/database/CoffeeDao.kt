@@ -15,10 +15,12 @@ interface CoffeeDao {
     @Insert
     suspend fun insertCoffeeChoice(coffeeChoice: CoffeeChoice)
 
-
     // Coffee table
     @Query("SELECT * FROM Coffee WHERE date = :dateString")
     fun getTodayCoffee(dateString: String): List<Coffee>
+
+    @Query("SELECT * FROM Coffee")
+    fun getAllCoffee(): LiveData<List<Coffee>>
 
     @Insert
     suspend fun saveCoffee(coffee: Coffee)

@@ -1,9 +1,10 @@
-package com.example.coffee
+package com.example.coffee.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.coffee.R
 import com.example.coffee.model.databaseObjects.CoffeeChoice
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,7 @@ import java.util.*
 import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
-    private val coffeeViewModel: CoffeeViewModel by viewModels()
+    private val mainActivityViewModel: MainActivityViewModel by viewModels()
 
     // Todo use firebase to check the images with the database and update
     private val allCoffee = arrayListOf(
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.IO) {
-                allCoffee.forEach { coffeeViewModel.insertCoffee(it) }
+                allCoffee.forEach { mainActivityViewModel.insertCoffeeChoice(it) }
             }
         }
 

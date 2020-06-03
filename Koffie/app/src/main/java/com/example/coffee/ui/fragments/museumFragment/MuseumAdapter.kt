@@ -1,4 +1,4 @@
-package com.example.coffee.ui.rijksMuseum
+package com.example.coffee.ui.fragments.museumFragment
 
 import android.content.Context
 import android.view.LayoutInflater

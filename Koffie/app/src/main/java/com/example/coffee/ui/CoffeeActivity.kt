@@ -1,12 +1,10 @@
-package com.example.coffee
+package com.example.coffee.ui
 
 import android.os.Bundle
-import android.view.MenuInflater
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import com.example.coffee.R
 import kotlinx.android.synthetic.main.activity_coffee.*
 
 
@@ -14,7 +12,6 @@ class CoffeeActivity : AppCompatActivity() {
     companion object{
         const val DATE_STRING = "dd-MM-yyyy"
     }
-    private val coffeeViewModel: CoffeeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

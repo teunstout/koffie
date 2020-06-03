@@ -1,4 +1,4 @@
-package com.example.coffee.ui.addCoffee
+package com.example.coffee.ui.fragments.coffeeFragment.addCoffeeActivity
 
 import android.view.LayoutInflater
 import android.view.View

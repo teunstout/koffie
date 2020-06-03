@@ -6,17 +6,17 @@
     app:startDestination="@id/coffeeFragment">
     <fragment
         android:id="@+id/coffeeFragment"
-        android:name="com.example.coffee.ui.coffeeScreens.CoffeeFragment"
+        android:name="com.example.coffee.ui.fragments.coffeeFragment.CoffeeFragment"
         android:label="Coffee"
         tools:layout="@layout/fragment_coffee" />
     <fragment
         android:id="@+id/museumFragment"
-        android:name="com.example.coffee.ui.rijksMuseum.MuseumFragment"
+        android:name="com.example.coffee.ui.fragments.museumFragment.MuseumFragment"
         android:label="Museum"
         tools:layout="@layout/fragment_museum" />
     <fragment
         android:id="@+id/statisticsFragment"
-        android:name="com.example.coffee.ui.coffeeScreens.StatisticsFragment"
+        android:name="com.example.coffee.ui.fragments.StatisticsFragment"
         android:label="Statistics"
         tools:layout="@layout/fragment_statistics" />
 </navigation>

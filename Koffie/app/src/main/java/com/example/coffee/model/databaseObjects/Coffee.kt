@@ -8,5 +8,6 @@ import java.util.*
 data class Coffee(
     val type: String,
     val date: String,
-    var amount: Int
+    var amount: Int,
+    val imgId: Int
 )

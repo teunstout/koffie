@@ -1,18 +1,13 @@
-package com.example.coffee.ui.rijksMuseum
+package com.example.coffee.ui.fragments.museumFragment
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.coffee.data.rijksMuseumApi.MuseumServiceRepository
 import com.example.coffee.model.rijksMuseumObjects.MuseumObject
-import com.example.coffee.model.rijksMuseumObjects.MuseumWebObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MuseumViewModel : ViewModel() {
     private val museumServiceRepository: MuseumServiceRepository = MuseumServiceRepository()

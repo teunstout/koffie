@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/coffee_beans"
-        android:alpha="0.90"/>
+        android:alpha="0.95"/>
 
     <TextView
         android:id="@+id/tvName"
