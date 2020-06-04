@@ -23,7 +23,10 @@ interface CoffeeDao {
     fun getAllCoffee(): LiveData<List<Coffee>>
 
     @Query("SELECT type, date, SUM(amount) as amount, imgId FROM Coffee GROUP BY type")
-    fun getTotalAllCoffee(): LiveData<List<Coffee>>
+    fun getTotalPerCoffee(): LiveData<List<Coffee>>
+
+    @Query("SELECT SUM(amount) FROM Coffee WHERE date = :dateString")
+    fun getTotalAllCoffee(dateString: String): LiveData<Int>
 
     @Insert
     suspend fun saveCoffee(coffee: Coffee)

@@ -44,7 +44,6 @@ class CoffeeActivity : AppCompatActivity() {
         super.onRestart()
         val newCoffeeIntent = Intent(this, CoffeeActivity::class.java)
         startActivity(newCoffeeIntent)
-        Log.i("FinishIntent", "OnRestart")
         finish()
     }
 

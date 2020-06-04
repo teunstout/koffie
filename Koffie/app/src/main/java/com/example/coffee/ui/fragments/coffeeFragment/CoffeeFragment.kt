@@ -24,24 +24,51 @@ class CoffeeFragment : Fragment() {
     private var coffeeAdapter = CoffeeAdapter(coffeeList)
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_coffee, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.i("lyfecyclebitch", "OnViewCreated")
         view.invalidate()
         initView()
     }
 
     private fun initView() {
         rvCoffee.adapter = coffeeAdapter
-        rvCoffee.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        rvCoffee.layoutManager =
+            LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
 
         coffeeViewModel.coffee.observe(viewLifecycleOwner, Observer {
             addCoffeeSortedToList(it as ArrayList<Coffee>)
         })
+        coffeeViewModel.totalAllCoffeeInt.observe(viewLifecycleOwner, Observer {
+            if (it == null) buildSmileyMessageView(0)
+            else buildSmileyMessageView(it)
+
+        })
+    }
+
+    private fun buildSmileyMessageView(amount: Int) {
+        when (amount) {
+            0 -> setImageWithText(
+                R.drawable.disappointment,
+                getString(R.string.smiley_disappointment)
+            )
+            1, 2 -> setImageWithText(R.drawable.thinking, getString(R.string.smiley_thinking))
+            in 3..6 -> setImageWithText(R.drawable.smile, getString(R.string.smiley_smile))
+            in 7..10 -> setImageWithText(R.drawable.nervous, getString(R.string.smiley_nervous))
+            else -> setImageWithText(R.drawable.shocked, getString(R.string.smiley_shocked))
+        }
+    }
+
+    private fun setImageWithText(imageInt: Int, message: String) {
+        imgSmiley.setImageResource(imageInt)
+        tvMessage.text = message
     }
 
     private fun addCoffeeSortedToList(allCoffee: ArrayList<Coffee>) {
@@ -53,7 +80,7 @@ class CoffeeFragment : Fragment() {
             var coffeeListDateDay = "" // Date of last inserted coffee
             var coffeeListIndex = -1
 
-            allCoffee.forEach {
+            allCoffee.reversed().forEach {
                 if (coffeeListDateDay == it.date) {
                     coffeeList[coffeeListIndex].add(it)
                 } else {

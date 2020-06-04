@@ -22,5 +22,7 @@ class CoffeeRepository(context: Context) {
 
     fun getAllCoffee(): LiveData<List<Coffee>> = coffeeDao.getAllCoffee()
 
-    fun getTotalAllCoffee(): LiveData<List<Coffee>> = coffeeDao.getTotalAllCoffee()
+    fun getTotalPerCoffee(): LiveData<List<Coffee>> = coffeeDao.getTotalPerCoffee()
+
+    fun getTotalAllCoffee(dateString: String): LiveData<Int> = coffeeDao.getTotalAllCoffee(dateString)
 }

@@ -13,12 +13,10 @@ import java.time.format.DateTimeFormatter
 
 class AddCoffeeViewModel(application: Application) : AndroidViewModel(application) {
     private val coffeeRepository = CoffeeRepository(application.applicationContext)
-    private val format = DateTimeFormatter.ofPattern(CoffeeActivity.DATE_STRING)
-
     var choices = coffeeRepository.getCoffeeChoices()
 
     fun saveCoffee(coffeeChoice: CoffeeChoice, amount: String) {
-        val todayDate = "29-05-2020"// LocalDate.now().format(format)
+        val todayDate = CoffeeActivity.today()
         // Coffee object that needs to be added
         val coffeeToSave = Coffee(
             coffeeChoice.coffeeName,
