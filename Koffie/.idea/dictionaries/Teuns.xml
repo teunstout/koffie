@@ -2,7 +2,10 @@
   <dictionary name="Teuns">
     <words>
       <w>corountines</w>
+      <w>gson</w>
       <w>imgonly</w>
+      <w>kapt</w>
+      <w>nighter</w>
       <w>okhttp</w>
     </words>
   </dictionary>

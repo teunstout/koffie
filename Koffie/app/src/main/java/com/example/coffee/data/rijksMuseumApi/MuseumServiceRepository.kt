@@ -1,6 +1,6 @@
 package com.example.coffee.data.rijksMuseumApi
 
-class MuseumServiceRepository() {
+class MuseumServiceRepository {
     private val museumApi: MuseumApiService = MuseumApi().createApi()
     private val apiKey = "h8kfsPso"
 

@@ -2,7 +2,6 @@ package com.example.coffee.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +16,7 @@ import java.time.format.DateTimeFormatter
 
 class CoffeeActivity : AppCompatActivity() {
     companion object {
-        const val DATE_STRING = "dd-MM-yyyy"
+        private const val DATE_STRING = "dd-MM-yyyy"
         fun today(): String {
             val format = DateTimeFormatter.ofPattern(DATE_STRING)
             return LocalDate.now().format(format)

@@ -1,10 +1,9 @@
 package com.example.coffee.ui.fragments.coffeeFragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.*
-import android.widget.LinearLayout
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coffee.R
 import com.example.coffee.model.databaseObjects.Coffee
 import com.example.coffee.ui.CoffeeViewModel
-import com.example.coffee.ui.fragments.coffeeFragment.addCoffeeActivity.AddCoffeeActivity
 import kotlinx.android.synthetic.main.fragment_coffee.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,28 +22,24 @@ class CoffeeFragment : Fragment() {
     private var coffeeAdapter = CoffeeAdapter(coffeeList)
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_coffee, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.invalidate()
         initView()
     }
 
     private fun initView() {
         rvCoffee.adapter = coffeeAdapter
-        rvCoffee.layoutManager =
-            LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        rvCoffee.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
 
+        // Observers
         coffeeViewModel.coffee.observe(viewLifecycleOwner, Observer {
             addCoffeeSortedToList(it as ArrayList<Coffee>)
         })
+
         coffeeViewModel.totalAllCoffeeInt.observe(viewLifecycleOwner, Observer {
             if (it == null) buildSmileyMessageView(0)
             else buildSmileyMessageView(it)
@@ -85,7 +79,7 @@ class CoffeeFragment : Fragment() {
                     coffeeList[coffeeListIndex].add(it)
                 } else {
                     coffeeListDateDay = it.date
-                    coffeeList.add(ArrayList<Coffee>())
+                    coffeeList.add(ArrayList())
                     coffeeList[++coffeeListIndex].add(it)
                 }
             }

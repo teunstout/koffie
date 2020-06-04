@@ -25,11 +25,9 @@ class MuseumAdapter(private val artifacts: List<MuseumObject>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
-
-        return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.model_museum_object, parent, false)
-        )
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.model_museum_object, parent, false))
     }
+
     override fun getItemCount(): Int =
         artifacts.size
 

@@ -3,13 +3,14 @@ package com.example.coffee.ui.fragments.coffeeFragment.addCoffeeActivity
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import com.example.coffee.ui.CoffeeActivity
 import com.example.coffee.data.database.CoffeeRepository
 import com.example.coffee.model.databaseObjects.Coffee
 import com.example.coffee.model.databaseObjects.CoffeeChoice
-import kotlinx.coroutines.*
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import com.example.coffee.ui.CoffeeActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AddCoffeeViewModel(application: Application) : AndroidViewModel(application) {
     private val coffeeRepository = CoffeeRepository(application.applicationContext)
