@@ -21,6 +21,8 @@
     <string name="fragment_coffee_today">Today</string>
     <string name="fragment_coffee_yesterday">Yesterday</string>
 
+    <!--  Fragment Statistics -->
+    <string name="fragment_statistics_title">Total amount of coffee</string>
 
     <!-- Smiley text -->
     <string name="smiley_disappointment">Wow! no coffee yet?</string>

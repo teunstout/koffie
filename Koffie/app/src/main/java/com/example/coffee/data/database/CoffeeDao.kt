@@ -19,8 +19,11 @@ interface CoffeeDao {
     @Query("SELECT * FROM Coffee WHERE date = :dateString")
     fun getTodayCoffee(dateString: String): List<Coffee>
 
-    @Query("SELECT * FROM Coffee")
+    @Query("SELECT * FROM Coffee") // ORDER BY date ASC
     fun getAllCoffee(): LiveData<List<Coffee>>
+
+    @Query("SELECT type, date, SUM(amount) as amount, imgId FROM Coffee GROUP BY type")
+    fun getTotalAllCoffee(): LiveData<List<Coffee>>
 
     @Insert
     suspend fun saveCoffee(coffee: Coffee)

@@ -9,6 +9,6 @@ import java.time.format.DateTimeFormatter
 
 class CoffeeViewModel(application: Application): AndroidViewModel(application){
     private val coffeeRepository = CoffeeRepository(application.applicationContext)
-
     var coffee = coffeeRepository.getAllCoffee()
+    var totalCoffee = coffeeRepository.getTotalAllCoffee()
 }

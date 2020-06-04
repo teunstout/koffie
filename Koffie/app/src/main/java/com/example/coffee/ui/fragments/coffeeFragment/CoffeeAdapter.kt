@@ -22,9 +22,7 @@ class CoffeeAdapter(private val coffeeList: ArrayList<ArrayList<Coffee>>) :
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val rootLayout: LinearLayout = view.findViewById(R.id.linearLayoutTable)
 
-
         fun bind(coffeeByDay: ArrayList<Coffee>) {
-            Log.i("COFFEELIST", coffeeList.toString())
             when (coffeeByDay[0].date) {
                 CoffeeActivity.today() -> itemView.tvDay.text = "Today"
                 CoffeeActivity.yesterday() -> itemView.tvDay.text = "Yesterday"
