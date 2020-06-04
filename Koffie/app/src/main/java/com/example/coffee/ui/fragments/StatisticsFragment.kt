@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.coffee.R
@@ -19,11 +21,7 @@ import kotlinx.android.synthetic.main.fragment_statistics.*
 class StatisticsFragment : Fragment() {
     private val coffeeViewModel: CoffeeViewModel by activityViewModels()
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_statistics, container, false)
     }
 
@@ -37,6 +35,11 @@ class StatisticsFragment : Fragment() {
         coffeeViewModel.totalCoffee.observe(viewLifecycleOwner, Observer {
             buildView(view, it)
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        view?.findViewById<LinearLayout>(R.id.linearLayoutTable)?.invalidate()
     }
 
     private fun buildView(view: View, coffeeTotalList: List<Coffee>) {

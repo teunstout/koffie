@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -23,23 +24,15 @@ class CoffeeFragment : Fragment() {
     private var coffeeAdapter = CoffeeAdapter(coffeeList)
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        setHasOptionsMenu(true)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_coffee, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.i("lyfecyclebitch", "OnViewCreated")
+        view.invalidate()
         initView()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.coffee_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun initView() {
@@ -52,11 +45,11 @@ class CoffeeFragment : Fragment() {
     }
 
     private fun addCoffeeSortedToList(allCoffee: ArrayList<Coffee>) {
+        view?.invalidate()
         if (allCoffee.isNullOrEmpty() || allCoffee.size == 0) return // check if list is empty and return if so
-
         coffeeList.clear()
 
-        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.Default).launch {
             var coffeeListDateDay = "" // Date of last inserted coffee
             var coffeeListIndex = -1
 
@@ -72,17 +65,5 @@ class CoffeeFragment : Fragment() {
         }
 
         coffeeAdapter.notifyDataSetChanged()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle item selection
-        return when (item.itemId) {
-            R.id.addCoffee -> {
-                val addCoffee = Intent(this.context, AddCoffeeActivity::class.java)
-                startActivity(addCoffee)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }
