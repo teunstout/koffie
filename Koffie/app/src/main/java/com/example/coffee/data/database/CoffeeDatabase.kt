@@ -10,14 +10,15 @@ abstract class CoffeeDatabase : RoomDatabase() {
     abstract fun coffeeDao(): CoffeeDao
 
     companion object {
-        private const val NAME_DATABASE = "Coffee"
+        private const val NAME_DATABASE = "Coffee" // Database name
 
         @Volatile // Changes direct visible to other threats
-        private var INSTANCE: CoffeeDatabase? = null
+        private var INSTANCE: CoffeeDatabase? = null // Set a instance of database that is null
 
         fun getInstance(context: Context): CoffeeDatabase {
-            if (INSTANCE == null) { // Look if there is a instance
-                synchronized(CoffeeDatabase::class.java) { // Create instance of database
+            if (INSTANCE == null) { // Check if there isn't any instance already
+                // Create instance of database. Synchronized is used so all data changes are communicated directly to every function
+                synchronized(CoffeeDatabase::class.java) {
                     INSTANCE = Room.databaseBuilder(
                         context,
                         CoffeeDatabase::class.java,
