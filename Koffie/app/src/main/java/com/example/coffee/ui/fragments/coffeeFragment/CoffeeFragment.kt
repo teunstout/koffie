@@ -1,5 +1,6 @@
 package com.example.coffee.ui.fragments.coffeeFragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coffee.R
 import com.example.coffee.model.databaseObjects.Coffee
 import com.example.coffee.ui.CoffeeViewModel
+import com.example.coffee.ui.fragments.coffeeFragment.editCoffee.UpdateCoffeeActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_coffee.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +22,7 @@ import kotlinx.coroutines.launch
 class CoffeeFragment : Fragment() {
     private val coffeeViewModel: CoffeeViewModel by activityViewModels()
     private var coffeeList: ArrayList<ArrayList<Coffee>> = ArrayList()
-    private var coffeeAdapter = CoffeeAdapter(coffeeList)
+    private var coffeeAdapter = CoffeeAdapter(coffeeList) { coffeeListEdit -> editCoffee(coffeeListEdit) }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -63,6 +66,12 @@ class CoffeeFragment : Fragment() {
     private fun setImageWithText(imageInt: Int, message: String) {
         imgSmiley.setImageResource(imageInt)
         tvMessage.text = message
+    }
+
+    private fun editCoffee(coffeeListEdit: ArrayList<Coffee>){
+        val updateCoffeeIntent = Intent(this.context, UpdateCoffeeActivity::class.java)
+        updateCoffeeIntent.putParcelableArrayListExtra(UpdateCoffeeActivity.COFFEE_LIST, coffeeListEdit)
+        startActivity(updateCoffeeIntent)
     }
 
     private fun addCoffeeSortedToList(allCoffee: ArrayList<Coffee>) {

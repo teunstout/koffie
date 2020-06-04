@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.coffeeFragment.addCoffeeActivity
+package com.example.coffee.ui.fragments.coffeeFragment.editCoffee
 
 import android.app.Application
 import android.util.Log
@@ -33,13 +33,11 @@ class AddCoffeeViewModel(application: Application) : AndroidViewModel(applicatio
             }
 
             if (allTodayCoffee.isNullOrEmpty()) {
-                Log.i("SaveCoffee", amount)
                 CoroutineScope(Dispatchers.IO).launch {
                     coffeeRepository.saveCoffee(coffeeToSave)
                 }
             } else {
                 allTodayCoffee[0].amount += amount.toInt()
-                Log.i("UpdateCoffee", allTodayCoffee[0].amount.toString())
                 CoroutineScope(Dispatchers.IO).launch {
                     coffeeRepository.updateCoffee(allTodayCoffee[0])
                 }

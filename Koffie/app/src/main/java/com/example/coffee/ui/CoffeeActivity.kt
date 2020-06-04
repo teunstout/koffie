@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.coffee.R
-import com.example.coffee.ui.fragments.coffeeFragment.addCoffeeActivity.AddCoffeeActivity
+import com.example.coffee.ui.fragments.coffeeFragment.editCoffee.AddCoffeeActivity
 import kotlinx.android.synthetic.main.activity_coffee.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".ui.fragments.coffeeFragment.editCoffee.UpdateCoffeeActivity"></activity>
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
@@ -28,9 +28,9 @@
             android:label="@string/title_activity_coffee"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.example.coffee.ui.fragments.coffeeFragment.addCoffeeActivity.AddCoffeeActivity"
+            android:name=".ui.fragments.coffeeFragment.editCoffee.AddCoffeeActivity"
             android:label="@string/title_activity_add_coffee"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

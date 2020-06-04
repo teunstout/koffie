@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.coffeeFragment.addCoffeeActivity
+package com.example.coffee.ui.fragments.coffeeFragment.editCoffee
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
