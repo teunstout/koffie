@@ -40,5 +40,6 @@ interface CoffeeDao {
     @Update
     suspend fun updateCoffee(coffee: Coffee)
 
-
+    @Delete
+    suspend fun deleteCoffee(coffee: Coffee)
 }

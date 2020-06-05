@@ -3,18 +3,19 @@ package com.example.coffee.ui.fragments.coffeeFragment.editCoffee
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
-import android.view.View
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coffee.R
 import com.example.coffee.model.databaseObjects.Coffee
+import com.example.coffee.ui.CoffeeActivity
 import kotlinx.android.synthetic.main.activity_update_coffee.*
-import kotlinx.android.synthetic.main.model_coffee_card.*
-import kotlinx.android.synthetic.main.model_coffee_card.view.*
+
 
 class UpdateCoffeeActivity : AppCompatActivity() {
     companion object {
@@ -30,7 +31,6 @@ class UpdateCoffeeActivity : AppCompatActivity() {
 
         initView()
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.update_coffee_menu, menu)
@@ -78,4 +78,25 @@ class UpdateCoffeeActivity : AppCompatActivity() {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.deleteCoffee -> {
+                AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_baseline_delete_24)
+                    .setTitle("Delete all coffee for ${CoffeeActivity.today()}?")
+                    .setMessage("After you deleted your coffee, there is no way to get it back")
+                    .setPositiveButton("Yes") { dialog, which ->
+                        listCoffee.forEach {
+                            updateCoffeeActivity.deleteCoffee(it)
+                        }
+                        finish()
+
+                    }
+                    .setNegativeButton("No", null)
+                    .show()
+                return false
+            }
+            else ->  super.onOptionsItemSelected(item)
+        }
+    }
 }
