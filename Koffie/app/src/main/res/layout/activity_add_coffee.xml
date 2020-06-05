@@ -5,7 +5,7 @@
     android:id="@+id/activityAddCoffee"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.coffeeFragment.editCoffee.AddCoffeeActivity">
+    tools:context=".ui.fragments.coffee_fragment.add_coffee_activity.AddCoffeeActivity">
 
     <TextView
         android:id="@+id/tvAddCoffeeTitle"
@@ -50,6 +50,7 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="number"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAmount" />
 

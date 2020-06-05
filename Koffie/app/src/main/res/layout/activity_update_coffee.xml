@@ -5,7 +5,7 @@
     android:id="@+id/activityUpdateView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.coffeeFragment.editCoffee.UpdateCoffeeActivity">
+    tools:context=".ui.fragments.coffee_fragment.update_coffee_activity.UpdateCoffeeActivity">
 
     <Button
         android:id="@+id/btnUpdate"

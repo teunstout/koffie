@@ -1,11 +1,10 @@
-package com.example.coffee.ui.fragments.coffeeFragment.editCoffee
+package com.example.coffee.ui.fragments.coffee_fragment.add_coffee_activity
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import com.example.coffee.data.database.CoffeeRepository
-import com.example.coffee.model.databaseObjects.Coffee
-import com.example.coffee.model.databaseObjects.CoffeeChoice
+import com.example.coffee.model.database_model.Coffee
+import com.example.coffee.model.database_model.CoffeeChoice
 import com.example.coffee.ui.CoffeeActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,10 +19,10 @@ class AddCoffeeViewModel(application: Application) : AndroidViewModel(applicatio
         val todayDate = CoffeeActivity.today()
         // Coffee object that needs to be added
         val coffeeToSave = Coffee(
-            coffeeChoice.coffeeName,
+            coffeeChoice.coffeeType,
             todayDate,
             amount.toInt(),
-            coffeeChoice.coffeeImgInt
+            coffeeChoice.coffeeImgId
         )
 
         CoroutineScope(Dispatchers.Default).launch {

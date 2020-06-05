@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.museumFragment
+package com.example.coffee.ui.fragments.museum_fragment
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.coffee.R
-import com.example.coffee.model.rijksMuseumObjects.MuseumObject
+import com.example.coffee.model.museum_model.MuseumArtifact
 import kotlinx.android.synthetic.main.model_museum_object.view.*
 
-class MuseumAdapter(private val artifacts: List<MuseumObject>) :
+class MuseumAdapter(private val artifacts: List<MuseumArtifact>) :
     RecyclerView.Adapter<MuseumAdapter.ViewHolder>() {
     private lateinit var context: Context
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(artifact: MuseumObject) {
+        fun bind(artifact: MuseumArtifact) {
             itemView.tvTitle.text = artifact.title
             itemView.tvCreator.text = artifact.creator
             itemView.tvDescription.text = artifact.description

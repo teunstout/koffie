@@ -28,12 +28,12 @@
             android:label="@string/title_activity_coffee"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.fragments.coffeeFragment.editCoffee.AddCoffeeActivity"
+            android:name=".ui.fragments.coffee_fragment.add_coffee_activity.AddCoffeeActivity"
             android:label="@string/title_activity_add_coffee"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".ui.fragments.coffeeFragment.editCoffee.UpdateCoffeeActivity"
+            android:name=".ui.fragments.coffee_fragment.update_coffee_activity.UpdateCoffeeActivity"
             android:label="@string/title_activity_update_coffee"
             android:theme="@style/AppTheme" />
     </application>

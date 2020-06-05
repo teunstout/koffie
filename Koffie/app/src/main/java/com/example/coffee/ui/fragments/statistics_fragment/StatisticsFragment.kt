@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments
+package com.example.coffee.ui.fragments.statistics_fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,13 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.coffee.R
-import com.example.coffee.model.databaseObjects.Coffee
-import com.example.coffee.ui.CoffeeViewModel
+import com.example.coffee.model.database_model.Coffee
+import com.example.coffee.ui.CoffeeActivityViewModel
 import kotlinx.android.synthetic.main.fragment_statistics.*
 import kotlinx.android.synthetic.main.model_coffee_card.*
 
 class StatisticsFragment : Fragment() {
-    private val coffeeViewModel: CoffeeViewModel by activityViewModels()
+    private val coffeeActivityViewModel: CoffeeActivityViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_statistics, container, false)
@@ -31,7 +31,7 @@ class StatisticsFragment : Fragment() {
     private fun initView() {
         tvTitleStatistics.text = getString(R.string.fragment_statistics_title)
 
-        coffeeViewModel.totalPerCoffee.observe(viewLifecycleOwner, Observer {
+        coffeeActivityViewModel.totalPerCoffee.observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrEmpty()) {
                 modelCoffeeCard.visibility = View.VISIBLE
                 buildStatisticsView(it)

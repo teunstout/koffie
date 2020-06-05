@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.museumFragment
+package com.example.coffee.ui.fragments.museum_fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,18 +8,16 @@ import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coffee.R
-import com.example.coffee.model.rijksMuseumObjects.MuseumObject
-import com.google.android.material.snackbar.Snackbar
+import com.example.coffee.model.museum_model.MuseumArtifact
 import kotlinx.android.synthetic.main.fragment_museum.*
 
 class MuseumFragment : Fragment() {
 
     private lateinit var dashboardViewModel: MuseumViewModel // ViewModel
-    private var artifacts = ArrayList<MuseumObject>()  // Array of MuseumObjects
+    private var artifacts = ArrayList<MuseumArtifact>()  // Array of MuseumObjects
     private var museumAdapter = MuseumAdapter(artifacts) // Adapter instantiated with MuseumObjects
     private var startPageArtifacts = 1
 

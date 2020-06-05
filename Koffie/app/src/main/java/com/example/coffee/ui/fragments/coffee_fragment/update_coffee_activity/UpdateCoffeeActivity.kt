@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.coffeeFragment.editCoffee
+package com.example.coffee.ui.fragments.coffee_fragment.update_coffee_activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coffee.R
-import com.example.coffee.model.databaseObjects.Coffee
+import com.example.coffee.model.database_model.Coffee
 import com.example.coffee.ui.CoffeeActivity
 import kotlinx.android.synthetic.main.activity_update_coffee.*
 

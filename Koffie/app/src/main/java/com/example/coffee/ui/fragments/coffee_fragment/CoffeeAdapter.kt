@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.coffeeFragment
+package com.example.coffee.ui.fragments.coffee_fragment
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coffee.R
-import com.example.coffee.model.databaseObjects.Coffee
+import com.example.coffee.model.database_model.Coffee
 import com.example.coffee.ui.CoffeeActivity
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.model_coffee_card.view.*
 
 

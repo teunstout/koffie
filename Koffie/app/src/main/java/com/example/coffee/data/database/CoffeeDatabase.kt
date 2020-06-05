@@ -2,8 +2,8 @@ package com.example.coffee.data.database
 
 import android.content.Context
 import androidx.room.*
-import com.example.coffee.model.databaseObjects.Coffee
-import com.example.coffee.model.databaseObjects.CoffeeChoice
+import com.example.coffee.model.database_model.Coffee
+import com.example.coffee.model.database_model.CoffeeChoice
 
 @Database(entities = [Coffee::class, CoffeeChoice::class], version = 1, exportSchema = false)
 abstract class CoffeeDatabase : RoomDatabase() {

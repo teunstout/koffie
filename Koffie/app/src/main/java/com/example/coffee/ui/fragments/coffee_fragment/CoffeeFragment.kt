@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.coffeeFragment
+package com.example.coffee.ui.fragments.coffee_fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,17 +10,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coffee.R
-import com.example.coffee.model.databaseObjects.Coffee
-import com.example.coffee.ui.CoffeeViewModel
-import com.example.coffee.ui.fragments.coffeeFragment.editCoffee.UpdateCoffeeActivity
-import com.google.android.material.snackbar.Snackbar
+import com.example.coffee.model.database_model.Coffee
+import com.example.coffee.ui.CoffeeActivityViewModel
+import com.example.coffee.ui.fragments.coffee_fragment.update_coffee_activity.UpdateCoffeeActivity
 import kotlinx.android.synthetic.main.fragment_coffee.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CoffeeFragment : Fragment() {
-    private val coffeeViewModel: CoffeeViewModel by activityViewModels()
+    private val coffeeActivityViewModel: CoffeeActivityViewModel by activityViewModels()
     private var coffeeList: ArrayList<ArrayList<Coffee>> = ArrayList()
     private var coffeeAdapter = CoffeeAdapter(coffeeList) { coffeeListEdit -> editCoffee(coffeeListEdit) }
 
@@ -39,11 +38,11 @@ class CoffeeFragment : Fragment() {
         rvCoffee.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
 
         // Observers
-        coffeeViewModel.coffee.observe(viewLifecycleOwner, Observer {
+        coffeeActivityViewModel.coffee.observe(viewLifecycleOwner, Observer {
             addCoffeeSortedToList(it as ArrayList<Coffee>)
         })
 
-        coffeeViewModel.totalAllCoffeeInt.observe(viewLifecycleOwner, Observer {
+        coffeeActivityViewModel.totalAllCoffeeInt.observe(viewLifecycleOwner, Observer {
             if (it == null) buildSmileyMessageView(0)
             else buildSmileyMessageView(it)
 

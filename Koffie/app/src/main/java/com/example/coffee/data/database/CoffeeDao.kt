@@ -2,8 +2,8 @@ package com.example.coffee.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.coffee.model.databaseObjects.Coffee
-import com.example.coffee.model.databaseObjects.CoffeeChoice
+import com.example.coffee.model.database_model.Coffee
+import com.example.coffee.model.database_model.CoffeeChoice
 
 @Dao // Data access object
 interface CoffeeDao {

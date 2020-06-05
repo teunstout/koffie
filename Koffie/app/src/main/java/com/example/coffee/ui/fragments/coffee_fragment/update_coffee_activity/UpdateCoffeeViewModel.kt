@@ -1,9 +1,9 @@
-package com.example.coffee.ui.fragments.coffeeFragment.editCoffee
+package com.example.coffee.ui.fragments.coffee_fragment.update_coffee_activity
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.example.coffee.data.database.CoffeeRepository
-import com.example.coffee.model.databaseObjects.Coffee
+import com.example.coffee.model.database_model.Coffee
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

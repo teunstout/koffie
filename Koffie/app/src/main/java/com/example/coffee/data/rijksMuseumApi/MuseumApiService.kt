@@ -1,6 +1,6 @@
 package com.example.coffee.data.rijksMuseumApi
 
-import com.example.coffee.model.rijksMuseumObjects.MuseumWebObject
+import com.example.coffee.model.museum_model.MuseumRequestObject
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -14,7 +14,7 @@ interface MuseumApiService {
         @Query("format") format: String, // Json format back
         @Query("imgonly") imgonly: Boolean, // Only objects with img
         @Query("p") pages: Int // page we want to have (default 1)
-    ): MuseumWebObject // Retrofit gives back 1 object
+    ): MuseumRequestObject // Retrofit gives back 1 object
 
 //    @GET("api/{language}/collection")
 //    fun museumObjects(

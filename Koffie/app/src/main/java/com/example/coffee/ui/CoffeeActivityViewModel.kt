@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.example.coffee.data.database.CoffeeRepository
 
-class CoffeeViewModel(application: Application): AndroidViewModel(application){
+class CoffeeActivityViewModel(application: Application): AndroidViewModel(application){
     private val coffeeRepository = CoffeeRepository(application.applicationContext)
 
     var coffee = coffeeRepository.getAllCoffee()
