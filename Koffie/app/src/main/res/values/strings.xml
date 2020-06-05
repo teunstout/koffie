@@ -3,6 +3,7 @@
     <string name="app_name">Coffee</string>
     <string name="title_activity_coffee">Daily coffee</string>
     <string name="title_activity_add_coffee">Add coffee</string>
+    <string name="title_activity_update_coffee">Update Coffee</string>
 
     <!-- Strings menu -->
     <string name="main_title_text">coffee Today</string>
@@ -38,5 +39,6 @@
 
     <!--  Model coffee row  -->
     <string name="model_coffee_image">Coffee image</string>
+
 
 </resources>

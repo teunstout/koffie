@@ -33,9 +33,9 @@ class StatisticsFragment : Fragment() {
 
         coffeeViewModel.totalPerCoffee.observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrEmpty()) {
-                coffeeCard.visibility = View.VISIBLE
+                modelCoffeeCard.visibility = View.VISIBLE
                 buildStatisticsView(it)
-            } else coffeeCard.visibility = View.INVISIBLE
+            } else modelCoffeeCard.visibility = View.INVISIBLE
         })
 
 //        coffeeViewModel.totalAllCoffeeInt.observe(viewLifecycleOwner, Observer {
