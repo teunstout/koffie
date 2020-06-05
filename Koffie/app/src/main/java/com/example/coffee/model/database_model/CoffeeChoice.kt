@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class CoffeeChoice(
-    @PrimaryKey(autoGenerate = false)
     val coffeeType: String, // Coffee type(ex. Cappuccino).
-    val coffeeImgId: Int // Picture id as in resource id
-
+    val coffeeImgId: Int, // Picture id as in resource id
+    @PrimaryKey(autoGenerate = true)
+    var id: Long? = null
 )

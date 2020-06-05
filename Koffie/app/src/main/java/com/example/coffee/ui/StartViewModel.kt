@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
+class StartViewModel(application: Application) : AndroidViewModel(application) {
     private val coffeeRepository = CoffeeRepository(application.applicationContext)
 
     suspend fun insertCoffeeChoice(coffeeChoice: CoffeeChoice) =
