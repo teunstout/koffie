@@ -30,6 +30,7 @@ class CoffeeAdapter(
                 callbackEditCoffee(coffeeByDay)
                 true
             }
+
             when (coffeeByDay[0].date) {
                 CoffeeActivity.today() -> itemView.tvDay.text = "Today"
                 CoffeeActivity.yesterday() -> itemView.tvDay.text = "Yesterday"
@@ -37,12 +38,15 @@ class CoffeeAdapter(
             }
 
             coffeeByDay.forEach {
-                val coffeeRow = LayoutInflater.from(context)
-                    .inflate(R.layout.model_coffee_row, rootLayout, false)
-                coffeeRow.findViewById<ImageView>(R.id.imgCoffee).setImageResource(it.imgId)
-                coffeeRow.findViewById<TextView>(R.id.tvTypeCoffee).text = it.type
-                coffeeRow.findViewById<TextView>(R.id.tvAmountCoffee).text = it.amount.toString()
-                rootLayout.addView(coffeeRow)
+                if (it.amount != 0) {
+                    val coffeeRow = LayoutInflater.from(context)
+                        .inflate(R.layout.model_coffee_row, rootLayout, false)
+                    coffeeRow.findViewById<ImageView>(R.id.imgCoffee).setImageResource(it.imgId)
+                    coffeeRow.findViewById<TextView>(R.id.tvTypeCoffee).text = it.type
+                    coffeeRow.findViewById<TextView>(R.id.tvAmountCoffee).text =
+                        it.amount.toString()
+                    rootLayout.addView(coffeeRow)
+                }
             }
         }
     }

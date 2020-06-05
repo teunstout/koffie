@@ -30,11 +30,12 @@
         <activity
             android:name=".ui.fragments.coffeeFragment.editCoffee.AddCoffeeActivity"
             android:label="@string/title_activity_add_coffee"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".ui.fragments.coffeeFragment.editCoffee.UpdateCoffeeActivity"
             android:label="@string/title_activity_update_coffee"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
