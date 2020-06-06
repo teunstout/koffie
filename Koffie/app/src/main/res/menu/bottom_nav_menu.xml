@@ -14,4 +14,8 @@
         android:id="@+id/museumFragment"
         android:icon="@drawable/ic_palette_black_24dp"
         android:title="@string/nav_museum" />
+    <item
+        android:id="@+id/addCoffeeChoiceFragment"
+        android:icon="@drawable/ic_baseline_coffee_24"
+        android:title="@string/nav_coffee_choice" />
 </menu>

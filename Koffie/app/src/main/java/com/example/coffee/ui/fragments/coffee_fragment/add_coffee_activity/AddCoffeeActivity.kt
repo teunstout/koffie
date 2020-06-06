@@ -1,10 +1,12 @@
 package com.example.coffee.ui.fragments.coffee_fragment.add_coffee_activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.coffee.R
 import com.example.coffee.model.database_model.CoffeeChoice
+import com.example.coffee.ui.CoffeeActivity
 import kotlinx.android.synthetic.main.activity_add_coffee.*
 import kotlin.collections.ArrayList
 
@@ -45,6 +47,10 @@ class AddCoffeeActivity : AppCompatActivity() {
             coffeeChoiceList[viewPagerCoffee.currentItem],
             itAmount.text.toString()
         )
+        val newCoffeeIntent = Intent(this, CoffeeActivity::class.java)
+        startActivity(newCoffeeIntent)
+
+
         finish()
     }
 

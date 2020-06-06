@@ -13,6 +13,7 @@
     <string name="nav_home">Home</string>
     <string name="nav_statistics">Statistics</string>
     <string name="nav_museum">Museum</string>
+    <string name="nav_coffee_choice">Coffee Choice</string>
 
     <!--  Fragment Museum  -->
     <string name="fragment_museum_title">Coffee Museum</string>
@@ -39,4 +40,6 @@
 
     <!--  Model coffee row  -->
     <string name="model_coffee_image">Coffee image</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

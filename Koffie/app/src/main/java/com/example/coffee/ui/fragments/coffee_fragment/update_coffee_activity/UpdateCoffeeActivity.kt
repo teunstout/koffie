@@ -15,6 +15,9 @@ import com.example.coffee.R
 import com.example.coffee.model.database_model.Coffee
 import com.example.coffee.ui.CoffeeActivity
 import kotlinx.android.synthetic.main.activity_update_coffee.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class UpdateCoffeeActivity : AppCompatActivity() {
@@ -44,10 +47,12 @@ class UpdateCoffeeActivity : AppCompatActivity() {
         addItemToCard()
 
         btnUpdate.setOnClickListener {
-            listCoffee.forEach {
-                updateCoffeeActivity.insertCoffee(it)
+            CoroutineScope(Dispatchers.Default).launch {
+                listCoffee.forEach {
+                    updateCoffeeActivity.insertCoffee(it)
+                }
+                finish()
             }
-            finish()
         }
     }
 
@@ -90,7 +95,6 @@ class UpdateCoffeeActivity : AppCompatActivity() {
                             updateCoffeeActivity.deleteCoffee(it)
                         }
                         finish()
-
                     }
                     .setNegativeButton("No", null)
                     .show()

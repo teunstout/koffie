@@ -1,10 +1,13 @@
 package com.example.coffee.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.coffee.R
@@ -13,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_coffee.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+private const val RESTART_ACTIVITY = 100
 
 class CoffeeActivity : AppCompatActivity() {
     companion object {
@@ -21,6 +25,7 @@ class CoffeeActivity : AppCompatActivity() {
             val format = DateTimeFormatter.ofPattern(DATE_STRING)
             return LocalDate.now().format(format)
         }
+
         fun yesterday(): String {
             val format = DateTimeFormatter.ofPattern(DATE_STRING)
             return LocalDate.now().minusDays(1).format(format)
@@ -28,11 +33,9 @@ class CoffeeActivity : AppCompatActivity() {
     }
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coffee)
-
         initNavigation()
     }
 
@@ -41,12 +44,6 @@ class CoffeeActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        val newCoffeeIntent = Intent(this, CoffeeActivity::class.java)
-        startActivity(newCoffeeIntent)
-        finish()
-    }
 
     private fun initNavigation() {
         // The NavController
@@ -60,6 +57,7 @@ class CoffeeActivity : AppCompatActivity() {
                 R.id.coffeeFragment -> supportActionBar?.show()
                 R.id.statisticsFragment -> supportActionBar?.hide()
                 R.id.museumFragment -> supportActionBar?.hide()
+                R.id.addCoffeeChoiceFragment -> supportActionBar?.hide()
             }
         }
     }
@@ -69,10 +67,22 @@ class CoffeeActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.addCoffee -> {
                 val addCoffee = Intent(this, AddCoffeeActivity::class.java)
-                startActivity(addCoffee)
+                startActivityForResult(addCoffee, RESTART_ACTIVITY)
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == RESTART_ACTIVITY) {
+                val newCoffeeIntent = Intent(this, CoffeeActivity::class.java)
+                startActivity(newCoffeeIntent)
+                finish()
+            }
         }
     }
 

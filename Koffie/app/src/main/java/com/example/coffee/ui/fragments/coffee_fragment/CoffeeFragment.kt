@@ -1,7 +1,10 @@
 package com.example.coffee.ui.fragments.coffee_fragment
 
+import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coffee.R
 import com.example.coffee.model.database_model.Coffee
+import com.example.coffee.ui.CoffeeActivity
 import com.example.coffee.ui.CoffeeActivityViewModel
 import com.example.coffee.ui.fragments.coffee_fragment.update_coffee_activity.UpdateCoffeeActivity
 import kotlinx.android.synthetic.main.fragment_coffee.*
@@ -18,13 +22,20 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+private const val RESTART_ACTIVITY = 100
+
 class CoffeeFragment : Fragment() {
     private val coffeeActivityViewModel: CoffeeActivityViewModel by activityViewModels()
     private var coffeeList: ArrayList<ArrayList<Coffee>> = ArrayList()
-    private var coffeeAdapter = CoffeeAdapter(coffeeList) { coffeeListEdit -> editCoffee(coffeeListEdit) }
+    private var coffeeAdapter =
+        CoffeeAdapter(coffeeList) { coffeeListEdit -> editCoffee(coffeeListEdit) }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_coffee, container, false)
     }
 
@@ -35,7 +46,8 @@ class CoffeeFragment : Fragment() {
 
     private fun initView() {
         rvCoffee.adapter = coffeeAdapter
-        rvCoffee.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        rvCoffee.layoutManager =
+            LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
 
         // Observers
         coffeeActivityViewModel.coffee.observe(viewLifecycleOwner, Observer {
@@ -67,10 +79,21 @@ class CoffeeFragment : Fragment() {
         tvMessage.text = message
     }
 
-    private fun editCoffee(coffeeListEdit: ArrayList<Coffee>){
+    private fun editCoffee(coffeeListEdit: ArrayList<Coffee>) {
         val updateCoffeeIntent = Intent(this.context, UpdateCoffeeActivity::class.java)
-        updateCoffeeIntent.putParcelableArrayListExtra(UpdateCoffeeActivity.COFFEE_LIST, coffeeListEdit)
-        startActivity(updateCoffeeIntent)
+        updateCoffeeIntent.putParcelableArrayListExtra(
+            UpdateCoffeeActivity.COFFEE_LIST,
+            coffeeListEdit
+        )
+        startActivityForResult(updateCoffeeIntent, RESTART_ACTIVITY)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == RESTART_ACTIVITY) {
+            activity?.finish()
+            val newCoffeeIntent = Intent(this.context, CoffeeActivity::class.java)
+            startActivity(newCoffeeIntent)
+        }
     }
 
     private fun addCoffeeSortedToList(allCoffee: ArrayList<Coffee>) {
