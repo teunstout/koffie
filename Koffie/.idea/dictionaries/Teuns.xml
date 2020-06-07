@@ -4,10 +4,12 @@
       <w>corountines</w>
       <w>firestore</w>
       <w>gson</w>
+      <w>imageview</w>
       <w>imgonly</w>
       <w>kapt</w>
       <w>nighter</w>
       <w>okhttp</w>
+      <w>snackbar</w>
     </words>
   </dictionary>
 </component>

@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.coffee_fragment
+package com.example.coffee.ui.coffee.fragment
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -19,9 +19,10 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.coffee.R
 import com.example.coffee.model.database_model.Coffee
-import com.example.coffee.ui.CoffeeActivity
-import com.example.coffee.ui.CoffeeActivityViewModel
-import com.example.coffee.ui.fragments.coffee_fragment.update_coffee_activity.UpdateCoffeeActivity
+import com.example.coffee.ui.coffee.CoffeeActivity
+import com.example.coffee.ui.coffee.CoffeeActivityViewModel
+import com.example.coffee.ui.coffee.activity.UpdateCoffeeActivity
+import com.example.coffee.ui.coffee.adapter.CoffeeAdapter
 import kotlinx.android.synthetic.main.fragment_coffee.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -94,7 +95,9 @@ class CoffeeFragment : Fragment() {
             UpdateCoffeeActivity.COFFEE_LIST,
             coffeeListEdit
         )
-        startActivityForResult(updateCoffeeIntent, RESTART_ACTIVITY)
+        startActivityForResult(updateCoffeeIntent,
+            RESTART_ACTIVITY
+        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

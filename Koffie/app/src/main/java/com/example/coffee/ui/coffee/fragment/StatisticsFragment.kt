@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.statistics_fragment
+package com.example.coffee.ui.coffee.fragment
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -19,15 +19,12 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.coffee.R
 import com.example.coffee.model.database_model.Coffee
-import com.example.coffee.model.database_model.CoffeeChoice
-import com.example.coffee.ui.CoffeeActivityViewModel
-import kotlinx.android.synthetic.main.fragment_add_coffee_choice.*
+import com.example.coffee.ui.coffee.CoffeeActivityViewModel
 import kotlinx.android.synthetic.main.fragment_statistics.*
 import kotlinx.android.synthetic.main.model_coffee_card.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class StatisticsFragment : Fragment() {
     private val coffeeActivityViewModel: CoffeeActivityViewModel by activityViewModels()
@@ -47,14 +44,21 @@ class StatisticsFragment : Fragment() {
         coffeeActivityViewModel.totalPerCoffee.observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrEmpty()) {
                 modelCoffeeCard.visibility = View.VISIBLE
-                buildStatisticsView(it)
+                buildViewDynamically(it)
             } else modelCoffeeCard.visibility = View.INVISIBLE
         })
     }
 
-    private fun buildStatisticsView(coffeeTotalList: List<Coffee>) {
+    /**
+     * Build view dynamically with all the cups of coffee
+     */
+    private fun buildViewDynamically(coffeeTotalList: List<Coffee>) {
+        // Root layout where we add a row for each coffee
         val rootLayout: LinearLayout? = view?.findViewById(R.id.linearLayoutTable)
+
         CoroutineScope(Dispatchers.Main).launch {
+
+            // For each coffee make new row.
             coffeeTotalList.forEach { coffee ->
                 val coffeeRow = LayoutInflater.from(this@StatisticsFragment.context)
                     .inflate(R.layout.model_coffee_row, rootLayout, false)
@@ -64,22 +68,33 @@ class StatisticsFragment : Fragment() {
                     coffee.amount.toString()
                 rootLayout?.addView(coffeeRow)
             }
+
         }
+
     }
 
+    /**
+     * Load images in the image view for each coffee row
+     */
     private fun loadImages(coffee: Coffee, imageView: ImageView){
+
+        // Check if there is a context
         this.context?.let {
+            // Load image with glide and context
             Glide.with(it).load(coffee.imgUrl).listener(object : RequestListener<Drawable> {
+                // If we can't find a image with the url show snackbar
                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
                     Toast.makeText(this@StatisticsFragment.context, "Coulden't find image of ${coffee.type}", Toast.LENGTH_LONG).show()
                     return true
                 }
 
+                // If we can find a image load it into the imageview
                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                     return false
                 }
             }).into(imageView)
         }
+
     }
 
 }

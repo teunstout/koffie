@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.museum_fragment
+package com.example.coffee.ui.coffee.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +13,9 @@ class MuseumViewModel : ViewModel() {
     private val museumServiceRepository: MuseumServiceRepository = MuseumServiceRepository()
     val artifacts = MutableLiveData<ArrayList<MuseumArtifact>>()
 
+    // Get the museum objects for page number.
     fun getMuseumObjects(pageNumber: Int) = CoroutineScope(Dispatchers.Main).launch {
-        artifacts.value = withContext(Dispatchers.IO) { museumServiceRepository.getObjectsMuseum(pageNumber).artArtifacts as ArrayList<MuseumArtifact> }
+        artifacts.value =
+            withContext(Dispatchers.IO) { museumServiceRepository.getObjectsMuseum(pageNumber).artArtifacts as ArrayList<MuseumArtifact> }
     }
 }

@@ -6,22 +6,22 @@
     app:startDestination="@id/coffeeFragment">
     <fragment
         android:id="@+id/coffeeFragment"
-        android:name="com.example.coffee.ui.fragments.coffee_fragment.CoffeeFragment"
+        android:name="com.example.coffee.ui.coffee.fragment.CoffeeFragment"
         android:label="Coffee"
         tools:layout="@layout/fragment_coffee" />
     <fragment
         android:id="@+id/museumFragment"
-        android:name="com.example.coffee.ui.fragments.museum_fragment.MuseumFragment"
+        android:name="com.example.coffee.ui.coffee.fragment.MuseumFragment"
         android:label="Museum"
         tools:layout="@layout/fragment_museum" />
     <fragment
         android:id="@+id/statisticsFragment"
-        android:name="com.example.coffee.ui.fragments.statistics_fragment.StatisticsFragment"
+        android:name="com.example.coffee.ui.coffee.fragment.StatisticsFragment"
         android:label="Statistics"
         tools:layout="@layout/fragment_statistics" />
     <fragment
         android:id="@+id/addCoffeeChoiceFragment"
-        android:name="com.example.coffee.ui.fragments.add_coffee_choice_fragment.AddCoffeeChoiceFragment"
+        android:name="com.example.coffee.ui.coffee.fragment.AddCoffeeChoiceFragment"
         android:label="fragment_add_coffee_choice"
         tools:layout="@layout/fragment_add_coffee_choice" />
 </navigation>

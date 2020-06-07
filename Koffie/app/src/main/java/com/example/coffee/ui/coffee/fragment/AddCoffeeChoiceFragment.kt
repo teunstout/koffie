@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.add_coffee_choice_fragment
+package com.example.coffee.ui.coffee.fragment
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle

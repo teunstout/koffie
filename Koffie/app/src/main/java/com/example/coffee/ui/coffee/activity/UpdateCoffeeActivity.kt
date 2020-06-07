@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.coffee_fragment.update_coffee_activity
+package com.example.coffee.ui.coffee.activity
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -16,9 +16,9 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.coffee.R
 import com.example.coffee.model.database_model.Coffee
-import com.example.coffee.ui.CoffeeActivity
+import com.example.coffee.ui.coffee.CoffeeActivity
+import com.example.coffee.ui.coffee.viewmodel.UpdateCoffeeViewModel
 import kotlinx.android.synthetic.main.activity_update_coffee.*
-import kotlinx.android.synthetic.main.model_coffee_choice.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -53,7 +53,7 @@ class UpdateCoffeeActivity : AppCompatActivity() {
         btnUpdate.setOnClickListener {
             CoroutineScope(Dispatchers.Default).launch {
                 listCoffee.forEach {
-                    updateCoffeeActivity.insertCoffee(it)
+                    updateCoffeeActivity.updateCoffee(it)
                 }
                 finish()
             }

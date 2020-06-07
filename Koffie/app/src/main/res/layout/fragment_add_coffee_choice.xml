@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ui.fragments.add_coffee_choice_fragment.AddCoffeeChoiceFragment">
+    tools:context=".ui.coffee.fragment.AddCoffeeChoiceFragment">
 
     <ImageView
         android:id="@+id/imgUploadPicture"
@@ -75,6 +75,7 @@
             android:id="@+id/tiName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
             android:hint="Name"
             android:maxLines="1"
             android:textColor="#000000" />
@@ -95,7 +96,7 @@
             android:id="@+id/tiUrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@android:color/white"
             android:hint="Url"
             android:maxLines="1"
             android:textColor="#000000" />

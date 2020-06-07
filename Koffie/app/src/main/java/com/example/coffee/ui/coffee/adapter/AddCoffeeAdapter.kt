@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.coffee_fragment.add_coffee_activity
+package com.example.coffee.ui.coffee.adapter
 
 import android.content.Context
 import android.graphics.drawable.Drawable

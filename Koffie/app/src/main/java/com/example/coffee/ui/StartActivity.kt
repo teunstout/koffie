@@ -5,19 +5,16 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
 import com.example.coffee.R
-import com.example.coffee.model.database_model.Coffee
 import com.example.coffee.model.database_model.CoffeeChoice
+import com.example.coffee.ui.coffee.CoffeeActivity
 import com.google.firebase.database.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
-import kotlin.collections.HashMap
 import kotlin.concurrent.schedule
-import kotlin.math.log
 
 
 class StartActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.coffee.ui.fragments.coffee_fragment.update_coffee_activity
+package com.example.coffee.ui.coffee.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -11,7 +11,8 @@ import kotlinx.coroutines.launch
 class UpdateCoffeeViewModel(application: Application) : AndroidViewModel(application) {
     private val coffeeRepository = CoffeeRepository(application.applicationContext)
 
-    fun insertCoffee(coffee: Coffee) {
+    // update a coffee.
+    fun updateCoffee(coffee: Coffee) {
         CoroutineScope(Dispatchers.Default).launch {
             CoroutineScope(Dispatchers.IO).launch {
                 coffeeRepository.updateCoffee(coffee)
@@ -19,6 +20,7 @@ class UpdateCoffeeViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
+    // Delete coffee
     fun deleteCoffee(coffee: Coffee) {
         CoroutineScope(Dispatchers.Default).launch {
             CoroutineScope(Dispatchers.IO).launch {
