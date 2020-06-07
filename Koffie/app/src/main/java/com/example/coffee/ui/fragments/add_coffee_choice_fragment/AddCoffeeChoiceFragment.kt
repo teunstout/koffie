@@ -17,6 +17,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_add_coffee_choice.*
 import kotlinx.android.synthetic.main.fragment_add_coffee_choice.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 
@@ -24,7 +28,6 @@ class AddCoffeeChoiceFragment : Fragment() {
     private var url: String = ""
     private var coffeeChoiceName: String = ""
     private var database: FirebaseDatabase? = FirebaseDatabase.getInstance()
-//    private var myRef = database!!.getReference("CoffeeChoice")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,24 +44,23 @@ class AddCoffeeChoiceFragment : Fragment() {
 
     private fun initView() {
         enableButtonForUpload(false)
-        Log.i("myRef", database.toString())
 
-        btnUploadPicture.btnUploadPicture.setOnClickListener {
-            uploadImg()
-        }
-
-        btnGetImage.setOnClickListener {
-            getImage()
-        }
+        btnUploadPicture.btnUploadPicture.setOnClickListener { uploadImg() }
+        btnGetImage.setOnClickListener { getImage() }
     }
 
     private fun uploadImg() {
         coffeeChoiceName = tiName.text.toString()
         if (coffeeChoiceName.isEmpty()) snackBarMessage("Please fill in a name")
 
-        val coffeeChoiceAddToDatabase = database?.getReference(formatCoffeeName(coffeeChoiceName))
-        coffeeChoiceAddToDatabase?.setValue(url)
-        coffeeChoiceAddToDatabase?.push()
+        CoroutineScope(Dispatchers.IO).launch {
+            val formattedName = withContext(Dispatchers.Default) { formatCoffeeName(coffeeChoiceName) }
+            val pathToStore = "Choices/${formattedName}"
+            val coffeeChoiceAddToDatabase = database?.getReference(pathToStore)
+            coffeeChoiceAddToDatabase?.setValue(url)
+            coffeeChoiceAddToDatabase?.push()
+        }
+
     }
 
     private fun formatCoffeeName(name: String): String {

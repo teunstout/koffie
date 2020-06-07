@@ -14,5 +14,5 @@ data class Coffee(
     val type: String, // Coffee type(ex. Cappuccino).
     val date: String, // Date in string
     var amount: Int,  // Amount as integer
-    val imgId: Int    // Picture id as in resource id
+    val imgUrl: String    // Picture id as in resource id
 ): Parcelable

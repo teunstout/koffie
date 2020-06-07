@@ -1,20 +1,24 @@
 package com.example.coffee.ui.fragments.coffee_fragment.update_coffee_activity
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.coffee.R
 import com.example.coffee.model.database_model.Coffee
 import com.example.coffee.ui.CoffeeActivity
 import kotlinx.android.synthetic.main.activity_update_coffee.*
+import kotlinx.android.synthetic.main.model_coffee_choice.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -63,7 +67,18 @@ class UpdateCoffeeActivity : AppCompatActivity() {
             val coffeeRow = LayoutInflater.from(this)
                 .inflate(R.layout.model_coffee_row_update, card, false)
 
-            coffeeRow.findViewById<ImageView>(R.id.imgCoffee).setImageResource(coffee.imgId)
+            Glide.with(this).load(coffee.imgUrl).listener(object :
+                RequestListener<Drawable> {
+                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                    Toast.makeText(this@UpdateCoffeeActivity, "Coulden't find image of ${coffee.imgUrl}", Toast.LENGTH_LONG).show()
+                    return true
+                }
+
+                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                    return false
+                }
+            }).into(coffeeRow.findViewById<ImageView>(R.id.imgCoffee))
+//            coffeeRow.findViewById<ImageView>(R.id.imgCoffee).setImageResource(coffee.imgUrl)
             coffeeRow.findViewById<TextView>(R.id.tvTypeCoffee).text = coffee.type
             coffeeRow.findViewById<TextView>(R.id.tvAmountCoffee).text = coffee.amount.toString()
 

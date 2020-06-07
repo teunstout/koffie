@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.model_coffee_card.view.*
 
 class CoffeeAdapter(
     private val coffeeList: ArrayList<ArrayList<Coffee>>,
-    private val callbackEditCoffee: (coffee: ArrayList<Coffee>) -> Unit
+    private val callbackEditCoffee: (coffee: ArrayList<Coffee>) -> Unit,
+    private val callbackLoadImages: (coffee: Coffee, imageView: ImageView) -> Unit
 ) :
     RecyclerView.Adapter<CoffeeAdapter.ViewHolder>() {
     private lateinit var context: Context
@@ -39,7 +40,8 @@ class CoffeeAdapter(
                 if (it.amount != 0) {
                     val coffeeRow = LayoutInflater.from(context)
                         .inflate(R.layout.model_coffee_row, rootLayout, false)
-                    coffeeRow.findViewById<ImageView>(R.id.imgCoffee).setImageResource(it.imgId)
+                    callbackLoadImages(it, coffeeRow.findViewById<ImageView>(R.id.imgCoffee))
+//                    coffeeRow.findViewById<ImageView>(R.id.imgCoffee).setImageResource(it.imgUrl)
                     coffeeRow.findViewById<TextView>(R.id.tvTypeCoffee).text = it.type
                     coffeeRow.findViewById<TextView>(R.id.tvAmountCoffee).text =
                         it.amount.toString()

@@ -10,6 +10,7 @@ import kotlinx.coroutines.withContext
 
 class StartViewModel(application: Application) : AndroidViewModel(application) {
     private val coffeeRepository = CoffeeRepository(application.applicationContext)
+    var coffeeChoices = coffeeRepository.getCoffeeChoices()
 
     suspend fun insertCoffeeChoice(coffeeChoice: CoffeeChoice) =
         withContext(Dispatchers.IO) { coffeeRepository.insertCoffeeChoice(coffeeChoice) }

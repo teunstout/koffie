@@ -22,7 +22,7 @@ class AddCoffeeViewModel(application: Application) : AndroidViewModel(applicatio
             coffeeChoice.coffeeType,
             todayDate,
             amount.toInt(),
-            coffeeChoice.coffeeImgId
+            coffeeChoice.coffeeImgUrl
         )
 
         CoroutineScope(Dispatchers.Default).launch {

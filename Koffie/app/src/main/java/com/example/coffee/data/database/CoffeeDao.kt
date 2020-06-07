@@ -21,7 +21,7 @@ interface CoffeeDao {
     fun getAllCoffee(): LiveData<List<Coffee>>
 
     // Get the total amount of coffee for each coffee you have
-    @Query("SELECT type, date, SUM(amount) as amount, imgId FROM Coffee GROUP BY type")
+    @Query("SELECT type, date, SUM(amount) as amount, imgUrl FROM Coffee GROUP BY type")
     fun getTotalPerCoffee(): LiveData<List<Coffee>>
 
     // Track total amount of coffee, so we can display it and use it to display text
