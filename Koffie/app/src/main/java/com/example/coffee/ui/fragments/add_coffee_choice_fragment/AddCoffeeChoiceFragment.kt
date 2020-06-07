@@ -1,29 +1,34 @@
 package com.example.coffee.ui.fragments.add_coffee_choice_fragment
 
-import android.R.attr
-import android.app.Activity.RESULT_OK
-import android.content.ContentResolver
-import android.content.Intent
-import android.content.pm.ApplicationInfo
-import android.graphics.BitmapFactory
-import android.net.Uri
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.coffee.R
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_add_coffee_choice.*
-import java.io.FileNotFoundException
-import java.io.InputStream
+import kotlinx.android.synthetic.main.fragment_add_coffee_choice.view.*
+import java.util.*
 
-
-private const val CODE_IMAGE = 100
 
 class AddCoffeeChoiceFragment : Fragment() {
+    private var url: String = ""
+    private var coffeeChoiceName: String = ""
+    private var database: FirebaseDatabase? = FirebaseDatabase.getInstance()
+//    private var myRef = database!!.getReference("CoffeeChoice")
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_add_coffee_choice, container, false)
@@ -35,31 +40,83 @@ class AddCoffeeChoiceFragment : Fragment() {
     }
 
     private fun initView() {
-        imgUploadPicture.setOnClickListener {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
-            startActivityForResult(intent, CODE_IMAGE)
+        enableButtonForUpload(false)
+        Log.i("myRef", database.toString())
+
+        btnUploadPicture.btnUploadPicture.setOnClickListener {
+            uploadImg()
+        }
+
+        btnGetImage.setOnClickListener {
+            getImage()
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
-            try {
-                val imageUri: Uri? = data?.data
-                val imageStream: InputStream? = imageUri?.let {
-                    activity?.contentResolver?.openInputStream(
-                        it
-                    )
+    private fun uploadImg() {
+        coffeeChoiceName = tiName.text.toString()
+        if (coffeeChoiceName.isEmpty()) snackBarMessage("Please fill in a name")
+
+        val coffeeChoiceAddToDatabase = database?.getReference(formatCoffeeName(coffeeChoiceName))
+        coffeeChoiceAddToDatabase?.setValue(url)
+        coffeeChoiceAddToDatabase?.push()
+    }
+
+    private fun formatCoffeeName(name: String): String {
+        var formattedName = ""
+        if (name.isEmpty()) return formattedName
+        val nameToLowercase = name.toLowerCase(Locale.ROOT)
+        val nameArray = nameToLowercase.split(" ")
+        nameArray.forEach { partOfName ->
+            formattedName += "${partOfName.capitalize()} "
+        }
+        snackBarMessage(formattedName)
+        return formattedName
+    }
+
+    private fun getImage() {
+        url = tiUrl.text.toString()
+        Log.i("EmptyUrl", url.toString())
+        if (url.isEmpty()) return
+
+        this.context?.let { context ->
+            Glide.with(context).load(url).listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    snackBarMessage("No image found on this Url")
+                    enableButtonForUpload(false)
+                    return true
                 }
-                val selectedImage = BitmapFactory.decodeStream(imageStream)
-                imgUploadPicture.setImageBitmap(selectedImage)
-            } catch (e: FileNotFoundException) {
-                e.printStackTrace()
-                Toast.makeText(this.context, "Something went wrong", Toast.LENGTH_LONG).show()
-            }
-        } else {
-            Toast.makeText(this.context, "You haven't picked an Image", Toast.LENGTH_LONG).show();
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    enableButtonForUpload(true)
+                    return false
+                }
+            }).into(imgUploadPicture) // Load image from web into picture.
+        }
+    }
+
+    private fun enableButtonForUpload(boolean: Boolean) {
+        btnUploadPicture.isEnabled = boolean // Disable
+        btnUploadPicture.isClickable = boolean // Not clickable
+    }
+
+    private fun snackBarMessage(snackBarMessage: String) {
+        this@AddCoffeeChoiceFragment.view?.let { view ->
+            Snackbar.make(
+                view,
+                snackBarMessage,
+                Snackbar.LENGTH_LONG
+            ).show()
         }
     }
 }
