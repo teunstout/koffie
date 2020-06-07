@@ -16,7 +16,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvModelCoffeeTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvModelCoffeeTitle"
+        android:contentDescription="@string/model_coffee_choice_img_description" />
 
     <TextView
         android:id="@+id/tvModelCoffeeTitle"

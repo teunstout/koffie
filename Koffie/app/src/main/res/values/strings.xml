@@ -5,7 +5,7 @@
     <string name="title_activity_add_coffee">Add coffee</string>
     <string name="title_activity_update_coffee">Update Coffee</string>
 
-    <!-- Strings menu -->
+    <!-- Menu -->
     <string name="main_title_text">coffee Today</string>
     <string name="menu_add_coffee">Add Coffee</string>
 
@@ -15,6 +15,14 @@
     <string name="nav_museum">Museum</string>
     <string name="nav_coffee_choice">Coffee Choice</string>
 
+    <!--  Activity Start  -->
+    <string name="activity_start_message">Retrieving data from the database</string>
+    <string name="activity_start_img_description">Coffee picture with steam</string>
+
+    <!--  Activity Update Coffee  -->
+    <string name="activity_update_coffee_btn_text">Update Coffee</string>
+    <string name="activity_update_coffee_tv_text">Press the minus and add button to change the amount of coffee</string>
+
     <!--  Fragment Museum  -->
     <string name="fragment_museum_title">Coffee Museum</string>
     <string name="fragment_museum_img_desc">Image of the object</string>
@@ -22,6 +30,7 @@
     <!--  Fragment Coffee  -->
     <string name="fragment_coffee_today">Today</string>
     <string name="fragment_coffee_yesterday">Yesterday</string>
+    <string name="fragment_coffee_img_description">Image smiley</string>
 
     <!--  Fragment Statistics -->
     <string name="fragment_statistics_title">Total amount of coffee</string>
@@ -40,6 +49,7 @@
 
     <!--  Model coffee row  -->
     <string name="model_coffee_image">Coffee image</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  Model coffee choice  -->
+    <string name="model_coffee_choice_img_description">Coffee Choice</string>
 </resources>
