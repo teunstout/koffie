@@ -29,9 +29,9 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
-
         initView()
 
+        // The data is retrieved to quick, so just start activity after 1 second
         Timer().schedule(1000) {
             val coffeeActivity = Intent(this@StartActivity, CoffeeActivity::class.java) // Activity
             startActivity(coffeeActivity)
@@ -39,28 +39,60 @@ class StartActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        dbCoffeeChoices?.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val values = dataSnapshot.children
+        // Observe if the data from the local database is here
+        startViewModel.coffeeChoices.observe(this@StartActivity, androidx.lifecycle.Observer {
+            // Data arrived. Add listener on online database and get data
+            dbCoffeeChoices?.addValueEventListener(object : ValueEventListener {
+                // Check for datachanges. Happens on startup and when something changes
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    // All the data from the database
+                    val coffeeChoiceRows = dataSnapshot.children
 
-                CoroutineScope(Dispatchers.Main).launch {
-                    values.forEach { value ->
-                        val newCoffeeChoice =
-                            value.key?.let { it -> CoffeeChoice(it, value.value as String) }
-                        withContext(Dispatchers.IO) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        // For each row make coffee object and save it
+                        coffeeChoiceRows.forEach { row ->
+                            val newCoffeeChoice =
+                                row.key?.let { it -> CoffeeChoice(it, row.value as String) }
                             if (newCoffeeChoice != null) {
-                                startViewModel.insertCoffeeChoice(newCoffeeChoice)
+                                saveCoffeeChoice(newCoffeeChoice)
                             }
                         }
                     }
+                    Log.d(
+                        "SaveFirebase",
+                        "Edit of local database data with firenbase data is completed."
+                    )
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.i("VALUEOFZ", "Failed to read value.", error.toException())
-            }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.w("ErrorFirebase", "Failed to read value.", error.toException())
+                }
+            })
         })
     }
 
+    /**
+     * For each new coffee check if it already exists.
+     * if it does but url is different update.
+     * if it does not exists insert coffee
+     */
+    private fun saveCoffeeChoice(newCoffeeChoice: CoffeeChoice) {
+        CoroutineScope(Dispatchers.Main).launch {
+            // Filter data
+            val localDatabaseCoffeeChoice = startViewModel.coffeeChoices.value?.filter {
+                it.coffeeType == newCoffeeChoice.coffeeType
+            }
+
+            // Only is one coffeeChoice because the type is the primary key.
+            if (localDatabaseCoffeeChoice.isNullOrEmpty()) withContext(Dispatchers.IO) {
+                startViewModel.insertCoffeeChoice(
+                    newCoffeeChoice
+                )
+            }
+            else {
+                if (localDatabaseCoffeeChoice[0].coffeeImgUrl != newCoffeeChoice.coffeeImgUrl)
+                    withContext(Dispatchers.IO) { startViewModel.updateCoffeeChoice(newCoffeeChoice) }
+            }
+        }
+    }
 }

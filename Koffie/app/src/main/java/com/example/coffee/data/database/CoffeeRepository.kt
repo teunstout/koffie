@@ -17,6 +17,8 @@ class CoffeeRepository(context: Context) {
 
     suspend fun updateCoffee(coffee: Coffee) = coffeeDao.updateCoffee(coffee)
 
+    suspend fun updateCoffeeChoice(coffee: CoffeeChoice) = coffeeDao.updateCoffeeChoice(coffee)
+
     suspend fun deleteCoffee(coffee: Coffee) = coffeeDao.deleteCoffee(coffee)
 
     // LiveData so we can observe the data

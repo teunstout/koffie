@@ -40,6 +40,10 @@ interface CoffeeDao {
     @Update
     suspend fun updateCoffee(coffee: Coffee)
 
+    // Insert a coffee choice
+    @Update
+    suspend fun updateCoffeeChoice(coffeeChoice: CoffeeChoice)
+
     @Delete
     suspend fun deleteCoffee(coffee: Coffee)
 }
