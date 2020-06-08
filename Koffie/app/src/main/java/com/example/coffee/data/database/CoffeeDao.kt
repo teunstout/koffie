@@ -25,7 +25,7 @@ interface CoffeeDao {
     fun getTotalPerCoffee(): LiveData<List<Coffee>>
 
     // Track total amount of coffee, so we can display it and use it to display text
-    @Query("SELECT SUM(amount) FROM Coffee WHERE date = :dateString")
+    @Query("SELECT SUM(amount) FROM coffee WHERE date = :dateString")
     fun getTotalAllCoffee(dateString: String): LiveData<Int>
 
     // Insert a coffee choice

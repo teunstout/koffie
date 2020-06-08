@@ -24,6 +24,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS") // Gives back false warning on "getParcelableArrayListExtra(COFFEE_LIST)"
 class UpdateCoffeeActivity : AppCompatActivity() {
     companion object {
         const val COFFEE_LIST = "COFFEE_LIST"
@@ -77,8 +78,7 @@ class UpdateCoffeeActivity : AppCompatActivity() {
                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                     return false
                 }
-            }).into(coffeeRow.findViewById<ImageView>(R.id.imgCoffee))
-//            coffeeRow.findViewById<ImageView>(R.id.imgCoffee).setImageResource(coffee.imgUrl)
+            }).into(coffeeRow.findViewById(R.id.imgCoffee))
             coffeeRow.findViewById<TextView>(R.id.tvTypeCoffee).text = coffee.type
             coffeeRow.findViewById<TextView>(R.id.tvAmountCoffee).text = coffee.amount.toString()
 
@@ -101,10 +101,10 @@ class UpdateCoffeeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.deleteCoffee -> {
-                AlertDialog.Builder(this)
+                AlertDialog.Builder(this, R.style.AlertDialogCustom)
                     .setIcon(R.drawable.ic_baseline_delete_24)
-                    .setTitle("Delete all coffee for ${CoffeeActivity.today()}?")
-                    .setMessage("After you deleted your coffee, there is no way to get it back")
+                    .setTitle(getString(R.string.activity_update_coffee_alert_title, CoffeeActivity.today()))
+                    .setMessage(getString(R.string.activity_update_coffee_alert_message))
                     .setPositiveButton("Yes") { dialog, which ->
                         listCoffee.forEach {
                             updateCoffeeActivity.deleteCoffee(it)

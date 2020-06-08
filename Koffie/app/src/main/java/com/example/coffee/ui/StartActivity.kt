@@ -75,6 +75,7 @@ class StartActivity : AppCompatActivity() {
      */
     private fun saveCoffeeChoice(newCoffeeChoice: CoffeeChoice) {
         CoroutineScope(Dispatchers.Main).launch {
+            Log.i("Choice", newCoffeeChoice.toString())
             // Filter data
             val localDatabaseCoffeeChoice = startViewModel.coffeeChoices.value?.filter {
                 it.coffeeType == newCoffeeChoice.coffeeType

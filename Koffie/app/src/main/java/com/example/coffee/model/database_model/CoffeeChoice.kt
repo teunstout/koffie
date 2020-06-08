@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 /**
  * Choices of coffee you can make
  */
-@Entity
+@Entity(tableName = "CoffeeChoice")
 data class CoffeeChoice(
     @PrimaryKey(autoGenerate = false)
     val coffeeType: String, // Coffee type(ex. Cappuccino).

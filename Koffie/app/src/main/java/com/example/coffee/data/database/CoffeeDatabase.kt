@@ -5,7 +5,7 @@ import androidx.room.*
 import com.example.coffee.model.database_model.Coffee
 import com.example.coffee.model.database_model.CoffeeChoice
 
-@Database(entities = [Coffee::class, CoffeeChoice::class], version = 1, exportSchema = false)
+@Database(entities = [Coffee::class, CoffeeChoice::class], version = 2, exportSchema = false)
 abstract class CoffeeDatabase : RoomDatabase() {
     abstract fun coffeeDao(): CoffeeDao
 
@@ -24,6 +24,7 @@ abstract class CoffeeDatabase : RoomDatabase() {
                         CoffeeDatabase::class.java,
                         NAME_DATABASE
                     )
+                        .fallbackToDestructiveMigration()
                         .build()
                 }
             }

@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
  * This is a coffee object
  */
 @Parcelize
-@Entity(primaryKeys = ["type", "date"], indices = [Index(value = ["date", "type"])])
+@Entity(tableName = "Coffee",primaryKeys = ["type", "date"], indices = [Index(value = ["date", "type"])])
 data class Coffee(
     val type: String, // Coffee type(ex. Cappuccino).
     val date: String, // Date in string

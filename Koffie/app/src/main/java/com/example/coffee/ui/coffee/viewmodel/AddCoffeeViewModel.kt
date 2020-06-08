@@ -19,7 +19,6 @@ class AddCoffeeViewModel(application: Application) : AndroidViewModel(applicatio
     // Save coffee
     fun saveCoffee(coffeeToSave: Coffee) {
         CoroutineScope(Dispatchers.Main).launch {
-            
             // Filter the coffee of today to type.
             // If someone already had a cup of this coffee this will be that coffee object.
             val coffeeToday = withContext(Dispatchers.IO) {
