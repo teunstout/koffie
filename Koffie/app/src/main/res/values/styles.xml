@@ -16,9 +16,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <!--  Alert box theme  -->
-    <style name="AlertDialogCustom" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
-    </style>
+    <!--  Alert box theme. Used un update coffee activity -->
+    <style name="AlertDialogCustom" parent="Theme.MaterialComponents.DayNight.Dialog.Alert" />
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 

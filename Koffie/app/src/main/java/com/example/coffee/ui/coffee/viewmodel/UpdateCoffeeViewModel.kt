@@ -13,7 +13,7 @@ class UpdateCoffeeViewModel(application: Application) : AndroidViewModel(applica
 
     // update a coffee.
     fun updateCoffee(coffee: Coffee) {
-        CoroutineScope(Dispatchers.Default).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             CoroutineScope(Dispatchers.IO).launch {
                 coffeeRepository.updateCoffee(coffee)
             }
@@ -22,7 +22,7 @@ class UpdateCoffeeViewModel(application: Application) : AndroidViewModel(applica
 
     // Delete coffee
     fun deleteCoffee(coffee: Coffee) {
-        CoroutineScope(Dispatchers.Default).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             CoroutineScope(Dispatchers.IO).launch {
                 coffeeRepository.deleteCoffee(coffee)
             }

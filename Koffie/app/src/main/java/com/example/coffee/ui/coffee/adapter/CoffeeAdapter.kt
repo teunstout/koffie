@@ -23,29 +23,31 @@ class CoffeeAdapter(
     private lateinit var context: Context
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val rootLayout: LinearLayout = view.findViewById(R.id.linearLayoutTable)
+        private val cardView: LinearLayout = view.findViewById(R.id.linearLayoutTable)
+
         fun bind(coffeeByDay: ArrayList<Coffee>) {
+            // On long click coffee go to method to edit coffee of today
             itemView.setOnLongClickListener {
                 callbackEditCoffee(coffeeByDay)
                 true
             }
 
+            // Check if date is today or yesterday
             when (coffeeByDay[0].date) {
-                CoffeeActivity.today() -> itemView.tvDay.text = "Today"
-                CoffeeActivity.yesterday() -> itemView.tvDay.text = "Yesterday"
+                CoffeeActivity.today() -> itemView.tvDay.text = context.getString(R.string.adapter_coffee_today)
+                CoffeeActivity.yesterday() -> itemView.tvDay.text = context.getString(R.string.adapter_coffee_yesterday)
                 else -> itemView.tvDay.text = coffeeByDay[0].date
             }
 
+            // for each coffee in list make an new row and add it to the view
             coffeeByDay.forEach {
                 if (it.amount != 0) {
-                    val coffeeRow = LayoutInflater.from(context)
-                        .inflate(R.layout.model_coffee_row, rootLayout, false)
-                    callbackLoadImages(it, coffeeRow.findViewById<ImageView>(R.id.imgCoffee))
-//                    coffeeRow.findViewById<ImageView>(R.id.imgCoffee).setImageResource(it.imgUrl)
-                    coffeeRow.findViewById<TextView>(R.id.tvTypeCoffee).text = it.type
-                    coffeeRow.findViewById<TextView>(R.id.tvAmountCoffee).text =
-                        it.amount.toString()
-                    rootLayout.addView(coffeeRow)
+                    // New row
+                    val coffeeRow = LayoutInflater.from(context).inflate(R.layout.model_coffee_row, cardView, false)
+                    callbackLoadImages(it, coffeeRow.findViewById(R.id.imgCoffee)) // Load image
+                    coffeeRow.findViewById<TextView>(R.id.tvTypeCoffee).text = it.type // Set type
+                    coffeeRow.findViewById<TextView>(R.id.tvAmountCoffee).text = it.amount.toString() // Set amount
+                    cardView.addView(coffeeRow) // Add it to the card
                 }
             }
         }

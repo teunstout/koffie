@@ -22,14 +22,13 @@
     <!--  Activity Update Coffee  -->
     <string name="activity_update_coffee_btn_text">Update Coffee</string>
     <string name="activity_update_coffee_tv_text">Press the minus and add button to change the amount of coffee</string>
+    <string name="activity_update_coffee_alert_title">Delete all coffee for %s?</string>
+    <string name="activity_update_coffee_alert_message">After you deleted your coffee, there is no way to get it back</string>
 
     <!--  Activity Add Coffee  -->
     <string name="activity_add_coffee_no_img">Please add a coffee choice before trying to add a coffee.</string>
     <string name="activity_add_coffee_no_amount">Please fill in an amount</string>
 
-    <!--  Activity Update Coffee  -->
-    <string name="activity_update_coffee_alert_title">Delete all coffee for %s?</string>
-    <string name="activity_update_coffee_alert_message">After you deleted your coffee, there is no way to get it back</string>
 
     <!--  Fragment Museum  -->
     <string name="fragment_museum_title">Coffee Museum</string>
@@ -60,4 +59,11 @@
 
     <!--  Model coffee choice  -->
     <string name="model_coffee_choice_img_description">Coffee Choice</string>
+
+    <!--  Glide text  -->
+    <string name="glide_no_img">Could not find image of %s</string>
+
+    <!--  Adapter coffee  -->
+    <string name="adapter_coffee_today">Today</string>
+    <string name="adapter_coffee_yesterday">Yesterday</string>
 </resources>

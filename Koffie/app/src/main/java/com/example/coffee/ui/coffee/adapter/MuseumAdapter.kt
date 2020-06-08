@@ -16,10 +16,10 @@ class MuseumAdapter(private val artifacts: List<MuseumArtifact>) :
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(artifact: MuseumArtifact) {
-            itemView.tvTitle.text = artifact.title
-            itemView.tvCreator.text = artifact.creator
-            itemView.tvDescription.text = artifact.description
-            Glide.with(context).load(artifact.pictureUrl.url).into(itemView.imgObject)
+            itemView.tvTitle.text = artifact.title // Title
+            itemView.tvCreator.text = artifact.creator // Creator
+            itemView.tvDescription.text = artifact.description // Description of artifact
+            Glide.with(context).load(artifact.pictureUrl.url).into(itemView.imgObject) // Load images
         }
     }
 
@@ -28,10 +28,7 @@ class MuseumAdapter(private val artifacts: List<MuseumArtifact>) :
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.model_museum_object, parent, false))
     }
 
-    override fun getItemCount(): Int =
-        artifacts.size
+    override fun getItemCount(): Int = artifacts.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(artifacts[position])
-
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(artifacts[position])
 }

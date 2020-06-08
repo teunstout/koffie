@@ -46,7 +46,9 @@ class AddCoffeeActivity : AppCompatActivity() {
     }
 
     /**
-     * Check if all the
+     * Check if all the inputs are good(coffee choice and amount)
+     * Make a new coffee and save the coffee.
+     * After saving restart activity.
      */
     private fun checkIfValidAndSave() {
         // If no amount is filled in return and display message.
@@ -79,7 +81,7 @@ class AddCoffeeActivity : AppCompatActivity() {
         finish()
         return true
     }
-
+    
     private fun toastMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }

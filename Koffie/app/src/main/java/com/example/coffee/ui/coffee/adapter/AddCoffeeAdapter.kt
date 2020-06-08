@@ -22,11 +22,16 @@ class AddCoffeeAdapter(private val choices: ArrayList<CoffeeChoice>) :
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(choice: CoffeeChoice) {
+            // Set coffee title
             itemView.tvModelCoffeeTitle.text = choice.coffeeType
 
+            // Load in images with glide
             Glide.with(context).load(choice.coffeeImgUrl).listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                    Toast.makeText(context, "Coulden't find image of ${choice.coffeeType}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.glide_no_img, choice.coffeeType),
+                        Toast.LENGTH_LONG).show()
                     return true
                 }
 
@@ -34,7 +39,6 @@ class AddCoffeeAdapter(private val choices: ArrayList<CoffeeChoice>) :
                     return false
                 }
             }).into(itemView.imgCoffeeChoice)
-//            itemView.imgCoffeeChoice.setImageResource(choice.coffeeImgUrl)
         }
     }
 

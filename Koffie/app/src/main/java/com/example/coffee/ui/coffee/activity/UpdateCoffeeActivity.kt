@@ -31,7 +31,7 @@ class UpdateCoffeeActivity : AppCompatActivity() {
     }
 
     private var listCoffee = ArrayList<Coffee>()
-    private val updateCoffeeActivity: UpdateCoffeeViewModel by viewModels()
+    private val updateCoffeeViewModel: UpdateCoffeeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,41 +47,72 @@ class UpdateCoffeeActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        // Get coffee list
         listCoffee = intent.getParcelableArrayListExtra(COFFEE_LIST)
+
+        // Check if list is null
         if (listCoffee.isNullOrEmpty()) finish()
         addItemToCard()
 
+        // On update button save the coffee list
         btnUpdate.setOnClickListener {
-            CoroutineScope(Dispatchers.Default).launch {
-                listCoffee.forEach {
-                    updateCoffeeActivity.updateCoffee(it)
+            CoroutineScope(Dispatchers.Main).launch {
+                listCoffee.forEach { coffee -> updateCoffeeViewModel.updateCoffee(coffee)
                 }
+
                 finish()
             }
         }
     }
 
+    /**
+     * Dynamically add a row for each coffee.
+     * Each row has a add and minus button for the amount of coffee.
+     */
     private fun addItemToCard() {
-        val card = findViewById<LinearLayout>(R.id.linearLayoutTable)
+        val card =
+            findViewById<LinearLayout>(R.id.linearLayoutTable) // Material card everything will be displayed in
+
         listCoffee.forEachIndexed { index, coffee ->
 
-            val coffeeRow = LayoutInflater.from(this)
-                .inflate(R.layout.model_coffee_row_update, card, false)
+            // Create new coffee row.
+            val coffeeRow =
+                LayoutInflater.from(this).inflate(R.layout.model_coffee_row_update, card, false)
 
+            // With glide, get the images of the web and load them into the imageviews.
             Glide.with(this).load(coffee.imgUrl).listener(object :
                 RequestListener<Drawable> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                    Toast.makeText(this@UpdateCoffeeActivity, "Coulden't find image of ${coffee.imgUrl}", Toast.LENGTH_LONG).show()
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    Toast.makeText(
+                        this@UpdateCoffeeActivity,
+                        getString(R.string.glide_no_img, coffee.imgUrl),
+                        Toast.LENGTH_LONG
+                    ).show()
                     return true
                 }
 
-                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
                     return false
                 }
             }).into(coffeeRow.findViewById(R.id.imgCoffee))
-            coffeeRow.findViewById<TextView>(R.id.tvTypeCoffee).text = coffee.type
-            coffeeRow.findViewById<TextView>(R.id.tvAmountCoffee).text = coffee.amount.toString()
 
+            coffeeRow.findViewById<TextView>(R.id.tvTypeCoffee).text =
+                coffee.type // Set type of row
+            coffeeRow.findViewById<TextView>(R.id.tvAmountCoffee).text =
+                coffee.amount.toString() // Set amount of row
+
+            // Add click listeners on the buttons for add and minus
             coffeeRow.findViewById<Button>(R.id.btnAdd).setOnClickListener {
                 listCoffee[index].amount++
                 coffeeRow.findViewById<TextView>(R.id.tvAmountCoffee).text =
@@ -94,28 +125,35 @@ class UpdateCoffeeActivity : AppCompatActivity() {
                     listCoffee[index].amount.toString()
             }
 
-            card.addView(coffeeRow)
+            card.addView(coffeeRow) // Add row to card view
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.deleteCoffee -> {
+                // Build an alert box to ask the user if they are sure they want to delete all coffee of today.
                 AlertDialog.Builder(this, R.style.AlertDialogCustom)
                     .setIcon(R.drawable.ic_baseline_delete_24)
-                    .setTitle(getString(R.string.activity_update_coffee_alert_title, CoffeeActivity.today()))
+                    .setTitle(
+                        getString(
+                            R.string.activity_update_coffee_alert_title,
+                            CoffeeActivity.today()
+                        )
+                    )
                     .setMessage(getString(R.string.activity_update_coffee_alert_message))
                     .setPositiveButton("Yes") { dialog, which ->
                         listCoffee.forEach {
-                            updateCoffeeActivity.deleteCoffee(it)
+                            updateCoffeeViewModel.deleteCoffee(it)
                         }
                         finish()
                     }
                     .setNegativeButton("No", null)
                     .show()
+
                 return false
             }
-            else ->  super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
