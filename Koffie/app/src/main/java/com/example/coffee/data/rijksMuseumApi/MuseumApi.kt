@@ -6,7 +6,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MuseumApi {
-
         private val baseUrl = "https://www.rijksmuseum.nl/"
         fun createApi(): MuseumApiService {
             // Log de body van het request
