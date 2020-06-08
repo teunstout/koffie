@@ -24,6 +24,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
+import kotlin.concurrent.schedule
 
 
 class AddCoffeeChoiceFragment : Fragment() {
@@ -73,7 +74,11 @@ class AddCoffeeChoiceFragment : Fragment() {
                 withContext(Dispatchers.IO) { database?.getReference(pathToStore) } // Get reference to path we want to store
             coffeeChoiceAddToDatabase?.setValue(url) // Set value
             coffeeChoiceAddToDatabase?.push() // push to online database
-            toastMessage(formattedName)
+
+            tiName.text?.clear()
+            tiUrl.text?.clear()
+            imgUploadPicture.setImageBitmap(null)
+            toastMessage(getString(R.string.fragment_add_coffee_choice_text_added, formattedName))
         }
     }
 

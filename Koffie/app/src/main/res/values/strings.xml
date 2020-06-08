@@ -53,6 +53,7 @@
     <string name="fragment_add_coffee_choice_btn_text">Upload picture</string>
     <string name="fragment_add_coffee_choice_des_img">Coffee Choice</string>
     <string name="fragment_add_coffee_choice_btn_img_des">Click img button</string>
+    <string name="fragment_add_coffee_choice_text_added">%s is added to the database</string>
 
 
     <!-- Smiley text -->
