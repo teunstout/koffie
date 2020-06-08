@@ -60,7 +60,7 @@ class AddCoffeeChoiceFragment : Fragment() {
      */
     private fun uploadImg() {
         coffeeChoiceName = tiName.text.toString()
-        if (coffeeChoiceName.isEmpty()) toastMessage(getString(R.string.fragment_add_coffee_choice_no_name))
+        if (coffeeChoiceName.isEmpty()) return toastMessage(getString(R.string.fragment_add_coffee_choice_no_name))
 
         // Upload image
         CoroutineScope(Dispatchers.Main).launch {
