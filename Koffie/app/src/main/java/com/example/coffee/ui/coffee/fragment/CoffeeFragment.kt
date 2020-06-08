@@ -124,7 +124,7 @@ class CoffeeFragment : Fragment() {
         if (allCoffee.isNullOrEmpty() || allCoffee.size == 0) return // check if list is empty and return if so
         coffeeList.clear()
 
-        CoroutineScope(Dispatchers.Default).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             var coffeeListDateDay = "" // Date of last inserted coffee
 
             // -1 Because the first will always fail.
@@ -145,7 +145,6 @@ class CoffeeFragment : Fragment() {
 
             coffeeAdapter.notifyDataSetChanged()
         }
-//        coffeeAdapter.notifyDataSetChanged()
     }
 
     /**

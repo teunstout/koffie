@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +21,7 @@ class MuseumFragment : Fragment() {
 
     private lateinit var dashboardViewModel: MuseumViewModel // ViewModel
     private var artifacts = ArrayList<MuseumArtifact>()  // Array of MuseumObjects
-    private var museumAdapter = MuseumAdapter(artifacts) // Adapter instantiated with MuseumObjects
+    private var museumAdapter = MuseumAdapter(artifacts) {nextList()} // Adapter instantiated with MuseumObjects
     private var startPageArtifacts = 1 // First page we get from the web
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -35,6 +36,24 @@ class MuseumFragment : Fragment() {
     }
 
     /**
+     * Init the view with an adapter
+     */
+    private fun initView() {
+        // Recyclerview with vertical layout
+        rvArtifacts.layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL , false)
+        rvArtifacts.adapter = museumAdapter // Set adapter of recyclerview
+        dashboardViewModel.getMuseumObjects(startPageArtifacts)
+    }
+
+    /**
+     * Get the next items.
+     */
+    private fun nextList(){
+        view?.findViewById<RelativeLayout>(R.id.loadingPanel)?.visibility = View.VISIBLE
+        dashboardViewModel.getMuseumObjects(++startPageArtifacts)
+    }
+
+    /**
      * Observe the data from the ViewModel
      */
     private fun listenLiveData() {
@@ -45,15 +64,6 @@ class MuseumFragment : Fragment() {
         })
     }
 
-    /**
-     * Init the view with an adapter
-     */
-    private fun initView() {
-        // Recyclerview with vertical layout
-        rvArtifacts.layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL , false)
-        rvArtifacts.adapter = museumAdapter // Set adapter of recyclerview
-        dashboardViewModel.getMuseumObjects(startPageArtifacts)
-    }
 
 }
 
