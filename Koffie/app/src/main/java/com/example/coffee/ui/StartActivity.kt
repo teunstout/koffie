@@ -18,9 +18,13 @@ import kotlin.concurrent.schedule
 
 
 class StartActivity : AppCompatActivity() {
+    companion object {
+        val PATH_COFFEE_CHOICES = "Choices"
+    }
+
     private val startViewModel: StartViewModel by viewModels()
     private var database: FirebaseDatabase? = FirebaseDatabase.getInstance()
-    private var dbCoffeeChoices = database?.getReference("Choices")
+    private var dbCoffeeChoices = database?.getReference(PATH_COFFEE_CHOICES)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

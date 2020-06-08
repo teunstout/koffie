@@ -20,9 +20,8 @@ class MuseumFragment : Fragment() {
 
     private lateinit var dashboardViewModel: MuseumViewModel // ViewModel
     private var artifacts = ArrayList<MuseumArtifact>()  // Array of MuseumObjects
-    private var museumAdapter =
-        MuseumAdapter(artifacts) // Adapter instantiated with MuseumObjects
-    private var startPageArtifacts = 1
+    private var museumAdapter = MuseumAdapter(artifacts) // Adapter instantiated with MuseumObjects
+    private var startPageArtifacts = 1 // First page we get from the web
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dashboardViewModel = ViewModelProvider(this).get(MuseumViewModel::class.java) // ViewModel of museum

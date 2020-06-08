@@ -42,6 +42,10 @@
     <!--  Fragment Statistics -->
     <string name="fragment_statistics_title">Total amount of coffee</string>
 
+    <!--  Fragment add Coffee Choice  -->
+    <string name="fragment_add_coffee_choice_no_name">Please fill in a name</string>
+
+
     <!-- Smiley text -->
     <string name="smiley_disappointment">Wow! no coffee yet?</string>
     <string name="smiley_thinking">Guess you should drink another one!</string>
@@ -61,7 +65,8 @@
     <string name="model_coffee_choice_img_description">Coffee Choice</string>
 
     <!--  Glide text  -->
-    <string name="glide_no_img">Could not find image of %s</string>
+    <string name="glide_no_img">Could not find image on %s</string>
+    <string name="glide_no_img_on_url">No image found on this Url</string>
 
     <!--  Adapter coffee  -->
     <string name="adapter_coffee_today">Today</string>
