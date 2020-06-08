@@ -63,18 +63,18 @@ class AddCoffeeChoiceFragment : Fragment() {
         if (coffeeChoiceName.isEmpty()) toastMessage(getString(R.string.fragment_add_coffee_choice_no_name))
 
         // Upload image
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             // Format name first
             val formattedName =
                 withContext(Dispatchers.Default) { formatCoffeeName(coffeeChoiceName) }
             val pathToStore =
                 "${StartActivity.PATH_COFFEE_CHOICES}/${formattedName}" // Path to save
             val coffeeChoiceAddToDatabase =
-                database?.getReference(pathToStore) // Get reference to path we want to store
+                withContext(Dispatchers.IO) { database?.getReference(pathToStore) } // Get reference to path we want to store
             coffeeChoiceAddToDatabase?.setValue(url) // Set value
             coffeeChoiceAddToDatabase?.push() // push to online database
+            toastMessage(formattedName)
         }
-
     }
 
     /**
@@ -91,7 +91,6 @@ class AddCoffeeChoiceFragment : Fragment() {
         nameArray.forEach { partOfName ->
             formattedName += "${partOfName.capitalize()} "
         }
-        toastMessage(formattedName) // Show formatted name to user
         return formattedName
     }
 
@@ -105,13 +104,24 @@ class AddCoffeeChoiceFragment : Fragment() {
 
         this.context?.let { context ->
             Glide.with(context).load(url).listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
                     toastMessage(getString(R.string.glide_no_img_on_url)) // On fail display img
                     enableButtonForUpload(false)
                     return true
                 }
 
-                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
                     enableButtonForUpload(true)
                     return false
                 }
