@@ -33,6 +33,8 @@
     <!--  Fragment Museum  -->
     <string name="fragment_museum_title">Coffee Museum</string>
     <string name="fragment_museum_img_desc">Image of the object</string>
+    <string name="fragment_museum_txt_string">Created in %s</string>
+
 
     <!--  Fragment Coffee  -->
     <string name="fragment_coffee_today">Today</string>
@@ -44,6 +46,13 @@
 
     <!--  Fragment add Coffee Choice  -->
     <string name="fragment_add_coffee_choice_no_name">Please fill in a name</string>
+    <string name="fragment_add_coffee_choice_hint_url">Url</string>
+    <string name="fragment_add_coffee_choice_hint_name">Name</string>
+    <string name="fragment_add_coffee_choice_explanation">If you want to change or add a new coffee, simply put in the name with a new image url. Make sure that the url is the address of the image</string>
+    <string name="fragment_add_coffee_choice_title">Add or update a coffee choice</string>
+    <string name="fragment_add_coffee_choice_btn_text">Upload picture</string>
+    <string name="fragment_add_coffee_choice_des_img">Coffee Choice</string>
+    <string name="fragment_add_coffee_choice_btn_img_des">Click img button</string>
 
 
     <!-- Smiley text -->
@@ -71,4 +80,5 @@
     <!--  Adapter coffee  -->
     <string name="adapter_coffee_today">Today</string>
     <string name="adapter_coffee_yesterday">Yesterday</string>
+
 </resources>

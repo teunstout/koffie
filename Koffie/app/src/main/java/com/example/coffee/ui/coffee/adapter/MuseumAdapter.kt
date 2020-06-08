@@ -22,10 +22,23 @@ class MuseumAdapter(
 
         fun bind(artifact: MuseumArtifact) {
             itemView.tvTitle.text = artifact.title // Title
-            itemView.tvCreator.text = artifact.creator // Creator
-            itemView.tvDescription.text = artifact.description // Description of artifact
+            itemView.tvCreator.text = artifact.longTitle // Creator
+
+            // Place where artifact was made
+            if (artifact.productionPlace.isNotEmpty()) {
+                // Production place gives back array. Seen from json request we need the last one of the list.
+                // https://www.rijksmuseum.nl/api/nl/collection?key=h8kfsPso&format=json&ps=10&p=1
+                val lastDescription: Int = artifact.productionPlace.size - 1
+                // Populate text field
+                itemView.tvCreated.text = context.getString(
+                    R.string.fragment_museum_txt_string,
+                    artifact.productionPlace[lastDescription]
+                )
+            }
+
+            // Load images
             Glide.with(context).load(artifact.pictureUrl.url)
-                .into(itemView.imgObject) // Load images
+                .into(itemView.imgObject)
 
             // End of list get new data
             if (adapterPosition == sizeList) {

@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coffee.R
@@ -16,6 +16,7 @@ import com.example.coffee.model.museum_model.MuseumArtifact
 import com.example.coffee.ui.coffee.adapter.MuseumAdapter
 import com.example.coffee.ui.coffee.viewmodel.MuseumViewModel
 import kotlinx.android.synthetic.main.fragment_museum.*
+
 
 class MuseumFragment : Fragment() {
 
@@ -41,6 +42,9 @@ class MuseumFragment : Fragment() {
     private fun initView() {
         // Recyclerview with vertical layout
         rvArtifacts.layoutManager = LinearLayoutManager(this.context, RecyclerView.VERTICAL , false)
+//        val mDividerItemDecoration = DividerItemDecoration(rvArtifacts.context, DividerItemDecoration.VERTICAL)
+        rvArtifacts.addItemDecoration(DividerItemDecoration(rvArtifacts.context, DividerItemDecoration.VERTICAL))
+
         rvArtifacts.adapter = museumAdapter // Set adapter of recyclerview
         dashboardViewModel.getMuseumObjects(startPageArtifacts)
     }

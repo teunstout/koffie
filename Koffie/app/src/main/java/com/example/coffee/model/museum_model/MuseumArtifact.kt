@@ -8,6 +8,6 @@ import com.google.gson.annotations.SerializedName
 data class MuseumArtifact(
     @SerializedName("webImage") val pictureUrl: MuseumPictureUrl,
     @SerializedName("title") val title: String,
-    @SerializedName("principalOrFirstMaker") val creator: String,
-    @SerializedName("longTitle") val description: String
+    @SerializedName("longTitle") val longTitle: String,
+    @SerializedName("productionPlaces") val productionPlace: List<String>
 )

@@ -29,12 +29,13 @@
         <activity
             android:name=".ui.coffee.CoffeeActivity"
             android:label="@string/title_activity_coffee"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".ui.coffee.activity.AddCoffeeActivity"
             android:label="@string/title_activity_add_coffee"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".ui.coffee.activity.UpdateCoffeeActivity"
             android:label="@string/title_activity_update_coffee"

@@ -21,14 +21,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        android:contentDescription="@string/fragment_add_coffee_choice_des_img" />
 
     <Button
         android:id="@+id/btnUploadPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Upload picture"
+        android:text="@string/fragment_add_coffee_choice_btn_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -40,7 +41,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Add or update a coffee choice"
+        android:text="@string/fragment_add_coffee_choice_title"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +55,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="If you don't like a picture for a coffee or want a new coffee type. Type the name and specify a link. First you need to check the link by putting it in the input field and getting the image with the download button."
+        android:text="@string/fragment_add_coffee_choice_explanation"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +66,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            android:hint="Name"
+            android:hint="@string/fragment_add_coffee_choice_hint_name"
             android:maxLines="1"
             android:textColor="#000000" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -97,8 +98,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            android:hint="Url"
-            android:maxLines="1"
+            android:hint="@string/fragment_add_coffee_choice_hint_url"
+            android:maxLines="3"
             android:textColor="#000000" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,10 +108,12 @@
         android:layout_width="48dp"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
-        android:background="#FFFFFF"
+        android:background="#EAEAEA"
         android:src="@drawable/ic_baseline_cloud_download_24"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="@+id/textInputLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textInputLayout2" />
+        app:layout_constraintTop_toTopOf="@+id/textInputLayout2"
+        android:contentDescription="@string/fragment_add_coffee_choice_btn_img_des" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
